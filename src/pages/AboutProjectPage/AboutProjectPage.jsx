@@ -1,6 +1,5 @@
 import s from "./AboutProjectPage.module.scss";
-import { Promo, NavTab } from "../../components";
-import AboutProject from "../../components/AboutProject/AboutProject";
+import { Promo, NavTab, Techs, AboutProject } from "../../components";
 
 const AboutProjectPage = () => {
   return (
@@ -8,6 +7,7 @@ const AboutProjectPage = () => {
       <Promo />
       <NavTab />
       <AboutProject />
+      <Techs />
     </section>
   );
 };
