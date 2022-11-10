@@ -1,6 +1,12 @@
 import s from "./AboutProjectPage.module.scss";
-import { Promo, NavTab, Techs, AboutProject } from "../../components";
-import AboutMe from "../../components/AboutMe/AboutMe";
+import {
+  Promo,
+  NavTab,
+  Techs,
+  AboutProject,
+  Portfolio,
+  AboutMe,
+} from "../../components";
 
 const AboutProjectPage = () => {
   return (
@@ -10,6 +16,7 @@ const AboutProjectPage = () => {
       <AboutProject />
       <Techs />
       <AboutMe />
+      <Portfolio />
     </section>
   );
 };
