@@ -1,4 +1,4 @@
-import s from "./AboutProjectPage.module.scss";
+import s from "./Main.module.scss";
 import {
   Promo,
   NavTab,
@@ -8,7 +8,7 @@ import {
   AboutMe,
 } from "../../components";
 
-const AboutProjectPage = () => {
+const Main = () => {
   return (
     <section className={s.aboutProject}>
       <Promo />
@@ -21,4 +21,4 @@ const AboutProjectPage = () => {
   );
 };
 
-export default AboutProjectPage;
+export default Main;

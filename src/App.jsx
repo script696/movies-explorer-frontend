@@ -1,14 +1,18 @@
-import "./styles/index.scss";
-import AboutProjectPage from "./pages/AboutProjectPage/AboutProjectPage";
+import { Main } from "./pages";
 import { Layout } from "./components";
+import { Switch } from "react-router-dom";
+import { authProtectedRoutes } from "./utils/navigationRoutes";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 const App = () => {
   return (
-    <div className="App">
+    <Switch>
       <Layout>
-        <AboutProjectPage />
+        {authProtectedRoutes.map(({ id, path, component }) => (
+          <ProtectedRoute key={id} path={path} component={component} exact />
+        ))}
       </Layout>
-    </div>
+    </Switch>
   );
 };
 export default App;

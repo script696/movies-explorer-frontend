@@ -17,7 +17,9 @@ const Techs = () => {
         </div>
         <ul className={s.techs__list}>
           {techs.map((tech) => (
-            <li className={s.techs__tech}>{tech}</li>
+            <li key={tech} className={s.techs__tech}>
+              {tech}
+            </li>
           ))}
         </ul>
       </div>
