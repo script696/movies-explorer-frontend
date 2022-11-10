@@ -1,10 +1,13 @@
 import "./styles/index.scss";
 import AboutProjectPage from "./pages/AboutProjectPage/AboutProjectPage";
+import { Layout } from "./components";
 
 const App = () => {
   return (
     <div className="App">
-      <AboutProjectPage />
+      <Layout>
+        <AboutProjectPage />
+      </Layout>
     </div>
   );
 };

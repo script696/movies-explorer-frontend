@@ -7,3 +7,5 @@ export { default as Techs } from "./Techs/Techs";
 export { default as AboutProject } from "./AboutProject/AboutProject";
 export { default as Portfolio } from "./Portfolio/Portfolio";
 export { default as AboutMe } from "./AboutMe/AboutMe";
+export { default as Footer } from "./Footer/Footer";
+export { default as Layout } from "./Layout/Layout";
