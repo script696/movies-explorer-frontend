@@ -1,1 +1,1 @@
-@import "~normalize.css";html,body,#root,.App {  height: 100%;  font-family: "Open Sans", sans-serif;  color: #353238;  font-size: 14px;}
+@import "~normalize.css";@import '../assets/fonts/index.scss';html,body,#root,.App {  height: 100%;  font-family: "Inter", sans-serif;  font-weight: 400;  color: #000;}
