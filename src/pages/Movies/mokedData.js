@@ -48,7 +48,7 @@ const mokedData = [
     title: "В погоне за Бэнкси",
     duration: 27,
     img: movieCardMok,
-    isSaved: true,
+    isSaved: false,
   },
   {
     id: 8,
@@ -62,7 +62,7 @@ const mokedData = [
     title: "В погоне за Бэнкси",
     duration: 27,
     img: movieCardMok,
-    isSaved: true,
+    isSaved: false,
   },
   {
     id: 10,

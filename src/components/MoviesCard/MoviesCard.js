@@ -1,8 +1,17 @@
 import s from "./MoviesCard.module.scss";
 import getClassname from "../../utils/getClassname";
 
-const MoviesCard = ({ movie: { title, duration, img, isSaved } }) => {
-  const btnStyle = [s.moviesCard__btn, isSaved || s.moviesCard__btn_saved];
+const MoviesCard = ({
+  movie: { title, duration, img, isSaved, onSave },
+  reversed,
+}) => {
+  const btnStyle = [
+    s.moviesCard__btn,
+    isSaved && s.moviesCard__btn_saved,
+    reversed && s.moviesCard__btn_unSaved,
+  ];
+
+  const isBtnDisabled = isSaved && !reversed;
 
   return (
     <article className={s.moviesCard}>
@@ -12,8 +21,13 @@ const MoviesCard = ({ movie: { title, duration, img, isSaved } }) => {
       </div>
       <img className={s.moviesCard__logo} src={img} alt={title} />
       <div className={s.moviesCard__bottom}>
-        <button className={getClassname(btnStyle)} type="button">
-          {isSaved && <span>Сохранить</span>}
+        <button
+          onClick={() => console.log("click")}
+          className={getClassname(btnStyle)}
+          type="button"
+          disabled={isBtnDisabled}
+        >
+          {!isSaved && !reversed && <span>Сохранить</span>}
         </button>
       </div>
     </article>

@@ -6,7 +6,7 @@
 //     },
 // };
 
-import { Main, Movies } from "../pages";
+import { Main, Movies, SavedMovies } from "../pages";
 
 const AUTH_PROTECTED_ROUTES = {
   HOME: {
@@ -18,6 +18,11 @@ const AUTH_PROTECTED_ROUTES = {
     id: "movies",
     path: "/movies",
     component: Movies,
+  },
+  SAVED_MOVIES: {
+    id: "savedMovies",
+    path: "/saved-movies",
+    component: SavedMovies,
   },
 };
 
