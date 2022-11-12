@@ -1,6 +1,7 @@
 import s from "./Movies.module.scss";
 import { MoviesCardList, SearchForm } from "../../components";
 import { mokedData } from "./mokedData";
+import MoviesMore from "../../components/MoviesMore/MoviesMore";
 
 const Movies = () => {
   return (
@@ -8,6 +9,7 @@ const Movies = () => {
       <div className={s.movies__wrapper}>
         <SearchForm />
         <MoviesCardList movies={mokedData} />
+        <MoviesMore />
       </div>
     </section>
   );
