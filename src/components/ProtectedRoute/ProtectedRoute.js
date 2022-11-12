@@ -1,14 +1,16 @@
 import { Redirect, Route } from "react-router-dom";
+import { PUBLIC_ROUTES } from "../../utils/navigationRoutes";
+const isAuthMock = false;
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) => {
-      if (false) {
+      if (!isAuthMock) {
         return (
           <Redirect
             to={{
-              pathname: "/",
+              pathname: PUBLIC_ROUTES.SIGNUP.path,
             }}
           />
         );

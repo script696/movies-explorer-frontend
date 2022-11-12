@@ -1,12 +1,19 @@
-import { Main } from "./pages";
 import { Layout } from "./components";
-import { Switch } from "react-router-dom";
-import { authProtectedRoutes } from "./utils/navigationRoutes";
+import { Route, Switch } from "react-router-dom";
+import { authProtectedRoutes, publicRoutes } from "./utils/navigationRoutes";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 const App = () => {
   return (
     <Switch>
+      {publicRoutes.map((route) => (
+        <Route
+          key={route.id}
+          path={route.path}
+          exact
+          component={route.component}
+        />
+      ))}
       <Layout>
         {authProtectedRoutes.map(({ id, path, component }) => (
           <ProtectedRoute key={id} path={path} component={component} exact />

@@ -1,12 +1,12 @@
-// const PUBLIC_ROUTES = {
-//     LOGIN: {
-//         id: "login",
-//         path: "/login",
-//         component: Login,
-//     },
-// };
+import { Main, Movies, SavedMovies, Profile, Register } from "../pages";
 
-import { Main, Movies, SavedMovies, Profile } from "../pages";
+const PUBLIC_ROUTES = {
+  SIGNUP: {
+    id: "signup",
+    path: "/signup",
+    component: Register,
+  },
+};
 
 const AUTH_PROTECTED_ROUTES = {
   HOME: {
@@ -32,5 +32,6 @@ const AUTH_PROTECTED_ROUTES = {
 };
 
 const authProtectedRoutes = Object.values(AUTH_PROTECTED_ROUTES);
+const publicRoutes = Object.values(PUBLIC_ROUTES);
 
-export { authProtectedRoutes };
+export { authProtectedRoutes, publicRoutes, PUBLIC_ROUTES };
