@@ -1,6 +1,7 @@
 import { Redirect, Route } from "react-router-dom";
 import { PUBLIC_ROUTES } from "../../utils/navigationRoutes";
-const isAuthMock = false;
+import { Layout } from "../index";
+const isAuthMock = true;
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -16,7 +17,11 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
         );
       }
 
-      return <Component {...props} />;
+      return (
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      );
     }}
   />
 );

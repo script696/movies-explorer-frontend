@@ -1,4 +1,13 @@
-import { Main, Movies, SavedMovies, Profile, Register, Login } from "../pages";
+import {
+  Main,
+  Movies,
+  SavedMovies,
+  Profile,
+  Register,
+  Login,
+  PageNotFound,
+} from "../pages";
+import { Redirect } from "react-router-dom";
 
 const PUBLIC_ROUTES = {
   SIGNUP: {
@@ -10,6 +19,11 @@ const PUBLIC_ROUTES = {
     id: "login",
     path: "/signin",
     component: Login,
+  },
+  PAGE_NOT_FOUND: {
+    id: "pageNotFound",
+    path: "*",
+    component: PageNotFound,
   },
 };
 
