@@ -1,10 +1,15 @@
-import { Main, Movies, SavedMovies, Profile, Register } from "../pages";
+import { Main, Movies, SavedMovies, Profile, Register, Login } from "../pages";
 
 const PUBLIC_ROUTES = {
   SIGNUP: {
     id: "signup",
     path: "/signup",
     component: Register,
+  },
+  LOGIN: {
+    id: "login",
+    path: "/signin",
+    component: Login,
   },
 };
 
