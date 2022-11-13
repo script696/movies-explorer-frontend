@@ -1,13 +1,18 @@
 import { Redirect, Route } from "react-router-dom";
 import { PUBLIC_ROUTES } from "../../utils/navigationRoutes";
-import { Layout } from "../index";
+import Layout from "../Layout/Layout";
 const isAuthMock = true;
 
-const ProtectedRoute = ({ component: Component, ...rest }) => (
+const AuthRouter = ({
+  component: Component,
+  layout: Layout,
+  protect = false,
+  ...rest
+}) => (
   <Route
     {...rest}
     render={(props) => {
-      if (!isAuthMock) {
+      if (!isAuthMock && protect) {
         return (
           <Redirect
             to={{
@@ -17,13 +22,15 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
         );
       }
 
-      return (
-        <Layout>
+      return Layout ? (
+        <Layout isAuth={isAuthMock}>
           <Component {...props} />
         </Layout>
+      ) : (
+        <Component {...props} />
       );
     }}
   />
 );
 
-export default ProtectedRoute;
+export default AuthRouter;

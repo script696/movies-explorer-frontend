@@ -1,5 +1,4 @@
 import s from "./Promo.module.scss";
-import { Header } from "../index";
 
 const Promo = () => {
   return (

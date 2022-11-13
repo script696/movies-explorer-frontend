@@ -15,7 +15,7 @@ const AboutProject = () => {
               Составление плана, работу над бэкендом, вёрстку, добавление
               функциональности и финальные доработки.
             </p>
-          </div>{" "}
+          </div>
           <div className={s.aboutProject__col}>
             <h3 className={s.aboutProject__subtitle}>
               На выполнение диплома ушло 5 недель

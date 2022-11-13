@@ -3,22 +3,25 @@ import { NavLink } from "react-router-dom";
 import s from "./MenuLink.module.scss";
 import getClassname from "../../utils/getClassname";
 
-const MenuLink = ({ link, text, colorWhite = false, withBg = false }) => {
-  const menuLinkStyles = [s.menuLink, withBg ? s.menuLink_withBg : null];
+const MenuLink = ({ link, text }) => {
+  const style = link.slice(1);
+  console.log(style);
   const menuLinkLinkStyles = [
     s.menuLink__link,
-    colorWhite ? s.menuLink_color_white : null,
+    s[`menuLink__link_style_${style}`],
   ];
 
   return (
-    <div className={getClassname(menuLinkStyles)}>
+    <div className={s.menuLink}>
       <NavLink
+        exact
         to={link}
         className={getClassname(menuLinkLinkStyles)}
-        onClick={() => console.log("click")}
+        activeClassName={s.menuLink__link_active}
       >
         {text}
       </NavLink>
+      {style === "profile" && <div className={s.menuLink__profile} />}
     </div>
   );
 };
