@@ -7,29 +7,30 @@ import {
   Login,
   PageNotFound,
 } from "../pages";
+import { ROUTES } from "./contsnts/routes";
 import { Layout } from "../components";
 
 const PUBLIC_ROUTES = {
   MAIN: {
     id: "main",
-    path: "/",
+    path: ROUTES.MAIN,
     component: Main,
     layout: Layout,
   },
   SIGNUP: {
     id: "signup",
-    path: "/signup",
+    path: ROUTES.SIGNUP,
     component: Register,
     layout: null,
   },
   SIGNIN: {
     id: "signin",
-    path: "/signin",
+    path: ROUTES.SIGNIN,
     component: Login,
     layout: null,
   },
   PAGE_NOT_FOUND: {
-    id: "pageNotFound",
+    id: ROUTES.PAGE_NOT_FOUND,
     path: "*",
     component: PageNotFound,
     layout: null,
@@ -39,19 +40,19 @@ const PUBLIC_ROUTES = {
 const AUTH_PROTECTED_ROUTES = {
   MOVIES: {
     id: "movies",
-    path: "/movies",
+    path: ROUTES.MOVIES,
     component: Movies,
     layout: Layout,
   },
   SAVED_MOVIES: {
     id: "savedMovies",
-    path: "/saved-movies",
+    path: ROUTES.SAVED_MOVIES,
     component: SavedMovies,
     layout: Layout,
   },
   PROFILE: {
     id: "profile",
-    path: "/profile",
+    path: ROUTES.PROFILE,
     component: Profile,
     layout: Layout,
   },

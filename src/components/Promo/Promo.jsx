@@ -1,4 +1,5 @@
 import s from "./Promo.module.scss";
+import { introGrid } from "../../assets/images";
 
 const Promo = () => {
   return (
@@ -7,6 +8,7 @@ const Promo = () => {
         <h1 className={s.promo__title}>
           Учебный проект студента факультета Веб-разработки.
         </h1>
+        <img src={introGrid} alt="Логотип П" className={s.promo__logo} />
       </div>
     </section>
   );

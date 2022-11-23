@@ -27,11 +27,7 @@ const Login = () => {
           {formFields.map(({ id, fieldsTitle, type, placeholder }) => (
             <div key={id} className={s.login__field}>
               <span className={s.login__fieldTitle}>{fieldsTitle}</span>
-              <input
-                type={type}
-                className={s.login__fieldInput}
-                placeholder={placeholder}
-              />
+              <input type={type} className={s.login__fieldInput} />
             </div>
           ))}
         </div>
@@ -40,7 +36,7 @@ const Login = () => {
           <div className={s.login__row}>
             <span className={s.login__regtext}>Еще не зарегестрированы?</span>
             <Link className={s.login__link} to="/">
-              Войти
+              Регистрация
             </Link>
           </div>
         </div>

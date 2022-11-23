@@ -1,1 +1,78 @@
-.profile{  display: grid;  place-items: center;  min-height: 100%;  &__title {    margin: 0 0 123px 0;    font-weight: 500;    font-size: 24px;    line-height: 29px;    text-align: center;  }  &__form {    min-width: 410px;  }  &__formFields {    margin: 0 0 220px 0;  }  &__formField {    padding: 17px 0;    display: flex;    justify-content: space-between;    &:not(:last-child){      border-bottom: 1px solid #E8E8E8;    }  }  &__fieldText {    margin: 0;    font-weight: 500;    font-size: 11px;    line-height: 13px;  }  &__input {    border: none;    text-align: right;  }  &__bottom {    display: flex;    justify-content: center;    align-items: center;    flex-direction: column;    gap: 16px;  }  &__btn {    padding: 0;    border: none;    background: none;    color: inherit;    font-size: 13px;    line-height: 16px;  }  &__logout {    font-weight: 500;    font-size: 13px;    line-height: 16px;    color: #EE3465;    text-decoration: none;  }}
+@import "../../styles/mixins";
+.profile {
+  padding: 50px 0 0;
+  display: grid;
+  place-items: center;
+  min-height: 100%;
+    min-width: 410px;
+  @include mobile {
+min-width: 260px
+  }
+  &__title {
+    margin: 0 0 100px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    @include mobile {
+      margin: 0 0 60px
+    }
+  }
+  &__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include mobile {
+      max-width: 260px
+        }
+  }
+  &__formFields {
+    width: 100%;
+    margin: 0 0 200px;
+    @include mobile {
+      margin: 0 0 355px
+    }
+  }
+  &__formField {
+    padding: 17px 0;
+    display: flex;
+    justify-content: space-between;
+    &:not(:last-child) {
+      border-bottom: 1px solid #e8e8e8
+    }
+  }
+  &__fieldText {
+    margin: 0;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px
+  }
+  &__input {
+    border: none;
+    text-align: right
+  }
+  &__bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px
+  }
+  &__btn {
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    font-size: 13px;
+    line-height: 16px
+  }
+  &__logout {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #ee3465;
+    text-decoration: none
+  }
+}

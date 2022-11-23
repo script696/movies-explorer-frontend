@@ -36,7 +36,7 @@ const SearchForm = () => {
               htmlFor="checkbox"
             />
           </div>
-          <span>Короткометражки</span>
+          <span className={s.searchForm__chDescr}>Короткометражки</span>
         </div>
       </form>
     </section>

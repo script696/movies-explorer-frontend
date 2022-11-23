@@ -1,5 +1,3 @@
-import { AUTH_PROTECTED_ROUTES } from "../navigationRoutes";
-
 const ROUTES = {
   MAIN: "/",
   SIGNUP: "/signup",
