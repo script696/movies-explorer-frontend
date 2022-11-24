@@ -7,7 +7,7 @@ import {
   EMAIL_RULES,
   NAME_RULES,
   PASSWORD_RULES,
-} from "../../utils/contsnts/validatorRules";
+} from "../../utils/constants/validatorRules";
 import { useEffect } from "react";
 
 const Register = () => {

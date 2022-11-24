@@ -1,6 +1,6 @@
 import s from "./Header.module.scss";
 import { logo } from "../../assets/images";
-import { ROUTES } from "../../utils/contsnts/routes";
+import { ROUTES } from "../../utils/constants/routes";
 import getClassname from "../../utils/getClassname";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";

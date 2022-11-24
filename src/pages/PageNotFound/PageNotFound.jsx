@@ -1,7 +1,9 @@
 import s from "./PageNotFound.module.scss";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const PageNotFound = () => {
+  const { goBack } = useHistory();
+
   return (
     <section className={s.pageNotFound}>
       <div className={s.pageNotFound__wrapper}>
@@ -9,9 +11,13 @@ const PageNotFound = () => {
           <h2 className={s.pageNotFound__title}>404</h2>
           <p className={s.pageNotFound__subtitle}>Страница не найдена</p>
         </div>
-        <Link className={s.pageNotFound__link} to="/">
+        <button
+          type="button"
+          className={s.pageNotFound__link}
+          onClick={() => goBack()}
+        >
           Назад
-        </Link>
+        </button>
       </div>
     </section>
   );

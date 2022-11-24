@@ -3,7 +3,7 @@ import { SectionTitle } from "../index";
 
 const AboutProject = () => {
   return (
-    <section className={s.aboutProject}>
+    <section id="aboutSection" className={s.aboutProject}>
       <div className={s.aboutProject__wrapper}>
         <SectionTitle title="О проекте" />
         <div className={s.aboutProject__description}>

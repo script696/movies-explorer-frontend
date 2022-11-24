@@ -5,7 +5,7 @@ import Portfolio from "../Portfolio/Portfolio";
 
 const AboutMe = () => {
   return (
-    <section className={s.aboutMe}>
+    <section id="aboutMeSection" className={s.aboutMe}>
       <div className={s.aboutMe__wrapper}>
         <SectionTitle title="Студент" />
         <div className={s.aboutMe__content}>

@@ -8,14 +8,6 @@ const Profile = () => {
   const [isFormEdit, setIsFormEdit] = useState(false);
   const [profile, setProfile] = useState({ name, mail });
 
-  const onInputChange = (e) => {
-    console.log(e.target);
-  };
-
-  useEffect(() => {
-    console.log(isFormEdit);
-  }, [isFormEdit]);
-
   return (
     <section className={s.profile}>
       <form className={s.profile__form}>
@@ -27,7 +19,6 @@ const Profile = () => {
               className={s.profile__input}
               type="text"
               value={name}
-              onChange={onInputChange}
               name="name"
               disabled={!isFormEdit}
             />
@@ -38,7 +29,6 @@ const Profile = () => {
               className={s.profile__input}
               type="text"
               value={mail}
-              onChange={onInputChange}
               disabled={!isFormEdit}
             />
           </div>

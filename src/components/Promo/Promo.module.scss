@@ -1,54 +1,63 @@
-@import "../../styles/mixins";
+@import '../../styles/mixins';
+
 .promo {
   height: 600px;
-  background: #465dff;
-  @include tablet {
+  background: #465dff;
+
+  @include tablet {
     padding: 74px 0 0;
-    height: 784px
+    height: 784px;
   }
+
   @include mobile {
     padding: 50px 0 0;
-    height: 595px
+    height: 595px;
   }
+
   &__logo {
     width: 320px;
-    height: 320px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-    @include mobile {
+    height: 320px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+
+    @include mobile {
       width: 248px;
-      height: 248px
+      height: 248px;
     }
   }
+
   &__wrapper {
     position: relative;
-    height: 100%;
-    max-width: 1100px;
-    padding: 0 20px;
-    box-sizing: border-box;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    @include mobile {
-      padding: 0 10px
+    height: 100%;
+    max-width: 1100px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include mobile {
+      padding: 0 10px;
     }
   }
+
   &__title {
     max-width: 730px;
-    margin: 0;
-    font-size: 50px;
-    line-height: 58px;
-    color: #fff;
-    letter-spacing: -0.04em;
-    text-align: center;
-    font-weight: inherit;
-    @include mobile {
+    margin: 0;
+    font-size: 50px;
+    line-height: 58px;
+    color: #fff;
+    letter-spacing: -0.04em;
+    text-align: center;
+    font-weight: inherit;
+
+    @include mobile {
       font-size: 31px;
-      line-height: 39px
+      line-height: 39px;
     }
   }
 }

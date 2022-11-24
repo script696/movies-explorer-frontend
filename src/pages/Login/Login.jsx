@@ -7,7 +7,7 @@ import getClassname from "../../utils/getClassname";
 import {
   EMAIL_RULES,
   PASSWORD_RULES,
-} from "../../utils/contsnts/validatorRules";
+} from "../../utils/constants/validatorRules";
 
 const Login = () => {
   const email = useInput({ initialVal: "", rules: EMAIL_RULES });

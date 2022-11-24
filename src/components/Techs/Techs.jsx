@@ -5,7 +5,7 @@ const Techs = () => {
   const techs = ["HTML", "CSS", "JS", "React", "Git", "Express.js", "mongoDB"];
 
   return (
-    <section className={s.techs}>
+    <section id="techsSection" className={s.techs}>
       <div className={s.techs__wrapper}>
         <SectionTitle title="Технологии" />
         <div className={s.techs__description}>

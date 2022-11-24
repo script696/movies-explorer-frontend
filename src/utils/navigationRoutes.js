@@ -7,7 +7,7 @@ import {
   Login,
   PageNotFound,
 } from "../pages";
-import { ROUTES } from "./contsnts/routes";
+import { ROUTES } from "./constants/routes";
 import { Layout } from "../components";
 
 const PUBLIC_ROUTES = {

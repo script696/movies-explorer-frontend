@@ -1,21 +1,25 @@
-@import "../../styles/mixins";
+@import '../../styles/mixins';
+
 .sectionTitle {
   padding-bottom: 23px;
-  border-bottom: 1px solid #000;
-  width: 100%;
-  @include mobile {
-    padding-bottom: 28px
+  border-bottom: 1px solid #000;
+  width: 100%;
+
+  @include mobile {
+    padding-bottom: 28px;
   }
+
   &__title {
     margin: 0;
-    font-size: 22px;
-    line-height: 27px;
-    color: inherit;
-    font-weight: inherit;
-    letter-spacing: -0.04em;
-    @include mobile {
+    font-size: 22px;
+    line-height: 27px;
+    color: inherit;
+    font-weight: inherit;
+    letter-spacing: -0.04em;
+
+    @include mobile {
       font-size: 18px;
-      line-height: 22px
+      line-height: 22px;
     }
   }
 }

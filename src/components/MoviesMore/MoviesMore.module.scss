@@ -1,24 +1,29 @@
-@import "../../styles/mixins";
-.moviesMore {
-  display: grid;
-  place-items: center;
-  padding: 50px 0 80px;
-  @include tablet {
-    padding: 50px 0 139px
-  }
-  @include mobile {
-    padding: 50px 0 150px
-  }
-  &__btn {
-    width: 104.3%;
-    height: 36px;
-    color: inherit;
-    border: none;
-    padding: 0;
-    background: #f9f9f9;
-    border-radius: 6px;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 15px
-  }
-}
+@import '../../styles/mixins';
+
+.moviesMore {
+  display: grid;
+  place-items: center;
+  padding: 50px 0 80px;
+
+  @include tablet {
+    padding: 50px 0 139px;
+  }
+
+  @include mobile {
+    padding: 50px 0 150px;
+  }
+
+  &__btn {
+    cursor: pointer;
+    width: 104.3%;
+    height: 36px;
+    color: inherit;
+    border: none;
+    padding: 0;
+    background: #f9f9f9;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
