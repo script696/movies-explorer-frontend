@@ -1,9 +1,8 @@
 import s from "./Header.module.scss";
 import { logo } from "../../assets/images";
-import { MenuLink } from "../index";
 import { ROUTES } from "../../utils/contsnts/routes";
 import getClassname from "../../utils/getClassname";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 const Header = ({ isAuth }) => {
   const [burgerActive, setBurgerActive] = useState(false);
@@ -21,9 +20,9 @@ const Header = ({ isAuth }) => {
     s.menuLink__link,
     s.menuLink__link_color_white,
   ];
-  const testWrapper = [
-    s.header__testWrapper,
-    burgerActive && s.header__testWrapper_active,
+  const authLinksWrapper = [
+    s.header__authLinksWrapper,
+    burgerActive && s.header__authLinksWrapper_active,
   ];
 
   return (
@@ -62,7 +61,7 @@ const Header = ({ isAuth }) => {
             </>
           )}
           {isAuth && (
-            <div className={getClassname(testWrapper)}>
+            <div className={getClassname(authLinksWrapper)}>
               <div className={s.header__firstCol}>
                 <NavLink
                   to={ROUTES.MAIN}

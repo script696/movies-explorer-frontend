@@ -11,3 +11,4 @@ export { default as Layout } from "./Layout/Layout";
 export { default as SearchForm } from "./SearchForm/SearchForm";
 export { default as MoviesCardList } from "./MoviesCardList/MoviesCardList";
 export { default as MoviesCard } from "./MoviesCard/MoviesCard";
+export { default as Checkbox } from "./Checkbox/Checkbox";
