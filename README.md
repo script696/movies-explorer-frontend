@@ -4,3 +4,5 @@
 IP 51.250.28.206
 
 Ссылка на проект - https://script-movie.nomoredomains.icu
+
+Ссылка на макет - https://disk.yandex.ru/d/eVOEcH_Yflk4Xg
