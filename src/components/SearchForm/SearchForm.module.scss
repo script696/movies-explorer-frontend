@@ -1,102 +1,1 @@
-@import '../../styles/mixins';
-
-.searchForm {
-padding: 155px 0 40px;
-  border-bottom: 1px solid #e8e8e8;
-
-  @include mobile {
-    padding: 155px 4px 40px;
-  }
-
-  &__form {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-
-    @include mobile {
-      gap: 45px;
-    }
-  }
-
-&__customCheckbox {
-    position: relative;
-    width: 36px;
-    height: 20px;
-}
-
-  &__row {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-
-    @include mobile {
-      gap: 10px;
-    }
-  }
-
-  &__checkbox {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-  }
-
-  &__checkboxLabel {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0 4px 4px rgb(50 50 71 / 8%), 0 4px 8px rgb(50 50 71 / 6%);
-    border-radius: 16px;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: 5%;
-      transform: translateY(-50%);
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #2be080;
-      transition: all 0.2s linear;
-    }
-
-    &_checked::before {
-      right: 50%;
-    }
-  }
-
-  &__input {
-    flex: 1 1 auto;
-    padding: 15px 22px;
-    border: none;
-    background: #f9f9f9;
-    border-radius: 4px;
-
-    @include mobile {
-      padding: 15px 12px;
-    }
-  }
-
-  &__button {
-    flex: 0 0 70px;
-cursor: pointer;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 18px;
-    color: #fff;
-    background: #ff6838;
-    border-radius: 3px;
-    border: none;
-  }
-
-  &__chDescr {
-    font-size: 11px;
-    line-height: 18px;
-  }
-}
+@import '../../styles/mixins';.searchForm {padding: 155px 0 40px;  border-bottom: 1px solid #e8e8e8;  @include mobile {    padding: 155px 4px 40px;  }  &__form {    display: flex;    flex-direction: column;    gap: 30px;    @include mobile {      gap: 45px;    }  }&__customCheckbox {    position: relative;    width: 36px;    height: 20px;}  &__row {    display: flex;    justify-content: center;    gap: 12px;    @include mobile {      gap: 10px;    }  }  &__checkbox {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;    opacity: 0;  }  &__checkboxLabel {    cursor: pointer;    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;    box-shadow: 0 4px 4px rgb(50 50 71 / 8%), 0 4px 8px rgb(50 50 71 / 6%);    border-radius: 16px;    &::before {      content: '';      position: absolute;      top: 50%;      right: 5%;      transform: translateY(-50%);      width: 16px;      height: 16px;      border-radius: 50%;      background: #2be080;      transition: all 0.2s linear;    }    &_checked::before {      right: 50%;    }  }  &__input {    flex: 1 1 auto;    padding: 15px 22px;    border: none;    background: #f9f9f9;    border-radius: 4px;    @include mobile {      padding: 15px 12px;    }  }  &__button {    flex: 0 0 70px;cursor: pointer;    font-weight: 500;    font-size: 12px;    line-height: 18px;    color: #fff;    background: #ff6838;    border-radius: 3px;    border: none;&:hover {  box-shadow: 0 0 20px 0 rgb(255, 104, 56, .75);  background-position: 100% 0;  transition: all .2s ease-in-out;}  }  &__chDescr {    font-size: 11px;    line-height: 18px;  }}

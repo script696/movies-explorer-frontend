@@ -4,7 +4,7 @@ import { Footer, Header } from "../index";
 const Layout = ({ children, isAuth }) => (
   <section className={s.layout}>
     <Header isAuth={isAuth} />
-    {children}
+    <main>{children}</main>
     <Footer />
   </section>
 );

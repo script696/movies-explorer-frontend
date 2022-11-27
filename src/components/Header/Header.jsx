@@ -2,7 +2,7 @@ import s from "./Header.module.scss";
 import { logo } from "../../assets/images";
 import { ROUTES } from "../../utils/constants/routes";
 import getClassname from "../../utils/getClassname";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 const Header = ({ isAuth }) => {
   const [burgerActive, setBurgerActive] = useState(false);
@@ -24,6 +24,14 @@ const Header = ({ isAuth }) => {
     s.header__authLinksWrapper,
     burgerActive && s.header__authLinksWrapper_active,
   ];
+
+  useEffect(() => {
+    if (burgerActive) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
+    }
+  }, [burgerActive]);
 
   return (
     <header className={s.header}>
