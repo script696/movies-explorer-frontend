@@ -337,7 +337,9 @@ right: 20px;
     text-decoration: none;
     font-size: 12px;
     line-height: 16px;
-
+  &_color_white {
+    color: #fff;
+  }
     @include tablet {
 
 

@@ -3,8 +3,10 @@ import { logo } from "../../assets/images";
 import { ROUTES } from "../../utils/constants/routes";
 import getClassname from "../../utils/getClassname";
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 const Header = ({ isAuth }) => {
+  const location = useLocation();
+  const isMainPage = location.pathname === "/";
   const [burgerActive, setBurgerActive] = useState(false);
 
   const menuBurgerStyles = [s.menuBurger, burgerActive && s.menuBurger_active];
@@ -18,7 +20,7 @@ const Header = ({ isAuth }) => {
   ];
   const navLinkMainSignUpStyles = [
     s.menuLink__link,
-    s.menuLink__link_color_white,
+    isMainPage && s.menuLink__link_color_white,
   ];
   const authLinksWrapper = [
     s.header__authLinksWrapper,
@@ -81,7 +83,7 @@ const Header = ({ isAuth }) => {
                 </NavLink>
                 <NavLink
                   to={ROUTES.MOVIES}
-                  className={s.menuLink__link}
+                  className={getClassname(navLinkMainSignUpStyles)}
                   activeClassName={s.menuLink__link_active}
                   exact
                 >
@@ -89,7 +91,7 @@ const Header = ({ isAuth }) => {
                 </NavLink>
                 <NavLink
                   to={ROUTES.SAVED_MOVIES}
-                  className={s.menuLink__link}
+                  className={getClassname(navLinkMainSignUpStyles)}
                   activeClassName={s.menuLink__link_active}
                   exact
                 >
@@ -99,7 +101,7 @@ const Header = ({ isAuth }) => {
               <div className={s.profile__link}>
                 <NavLink
                   to={ROUTES.PROFILE}
-                  className={s.menuLink__link}
+                  className={getClassname(navLinkMainSignUpStyles)}
                   activeClassName={s.menuLink__link_active}
                   exact
                 >
