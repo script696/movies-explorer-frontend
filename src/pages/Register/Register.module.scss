@@ -176,13 +176,22 @@ position: relative;
 
   &__bottom {
 
-
+position: relative;
     display: flex;
     flex-direction: column;
     gap: 16px;
 
 
   }
+  &__errText {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ee3465;
+    width: 100%;
+  }
+
 
 
 
@@ -208,7 +217,9 @@ position: relative;
     background: #ff6838;
     border-radius: 3px;
     font-weight: 500;
-
+    &_disable {
+      background: #a0a0a0;
+    }
 
   }
 

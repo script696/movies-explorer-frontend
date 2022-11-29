@@ -9,12 +9,12 @@ import {
   PASSWORD_RULES,
 } from "../../utils/constants/validatorRules";
 import { useEffect, useState } from "react";
-import { useMainApiContext } from "../../hooks/useMainApiContext";
+import { useUserContext } from "../../hooks/useUserContext";
 import { ROUTES } from "../../utils/constants/routes";
 
 const Register = () => {
   const { push } = useHistory();
-  const { handleRegistrationSubmit } = useMainApiContext();
+  const { handleRegistrationSubmit, apiError, getUser } = useUserContext();
 
   const email = useInput({ initialVal: "", rules: EMAIL_RULES });
   const password = useInput({ initialVal: "", rules: PASSWORD_RULES });
@@ -49,6 +49,15 @@ const Register = () => {
   const emailHasErrAndDirty = !email.isInputValid && email.isDirty;
   const passwordHasErrAndDirty = !password.isInputValid && password.isDirty;
   const nameHasErrAndDirty = !name.isInputValid && name.isDirty;
+
+  const isFormValid =
+    email.isInputValid && password.isInputValid && name.isInputValid;
+  const isSubmitBtnDisabled = !isFormValid || apiError.isError;
+
+  const sbmtButtonStyles = [
+    s.register__btn,
+    isSubmitBtnDisabled && s.register__btn_disable,
+  ];
 
   const fieldInputsStyles = {
     emailInputStyles: [
@@ -136,7 +145,15 @@ const Register = () => {
           )}
         </div>
         <div className={s.register__bottom}>
-          <button className={s.register__btn}>Зарегестрироваться</button>
+          {apiError.isError && (
+            <span className={s.register__errText}>{apiError.message}</span>
+          )}
+          <button
+            className={getClassname(sbmtButtonStyles)}
+            disabled={isSubmitBtnDisabled}
+          >
+            Зарегестрироваться
+          </button>
           <div className={s.register__row}>
             <span className={s.register__regtext}>Уже зарегестрированы?</span>
             <button

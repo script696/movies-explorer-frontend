@@ -9,11 +9,11 @@ import {
   PASSWORD_RULES,
 } from "../../utils/constants/validatorRules";
 import { ROUTES } from "../../utils/constants/routes";
-import { useMainApiContext } from "../../hooks/useMainApiContext";
+import { useUserContext } from "../../hooks/useUserContext";
 
 const Login = () => {
   const { push } = useHistory();
-  const { handleLoginSubmit } = useMainApiContext();
+  const { handleLoginSubmit, apiError, getUser } = useUserContext();
 
   const email = useInput({ initialVal: "", rules: EMAIL_RULES });
   const password = useInput({ initialVal: "", rules: PASSWORD_RULES });
@@ -40,6 +40,14 @@ const Login = () => {
   ];
   const emailHasErrAndDirty = !email.isInputValid && email.isDirty;
   const passwordHasErrAndDirty = !password.isInputValid && password.isDirty;
+
+  const isFormValid = email.isInputValid && password.isInputValid;
+  const isSubmitBtnDisabled = !isFormValid || apiError.isError;
+
+  const sbmtButtonStyles = [
+    s.login__btn,
+    isSubmitBtnDisabled && s.login__btn_disable,
+  ];
 
   const fieldInputsStyles = {
     emailInputStyles: [
@@ -76,7 +84,9 @@ const Login = () => {
 
     const res = await handleLoginSubmit(e);
 
-    if (res) push(ROUTES.MOVIES);
+    if (!res) return;
+    await getUser();
+    push(ROUTES.MOVIES);
   };
 
   const onRegistrationRedirect = () => {
@@ -116,12 +126,20 @@ const Login = () => {
           )}
         </div>
         <div className={s.login__bottom}>
-          <button className={s.login__btn}>Войти</button>
+          {apiError.isError && (
+            <span className={s.login__errText}>{apiError.message}</span>
+          )}
+          <button
+            className={getClassname(sbmtButtonStyles)}
+            disabled={isSubmitBtnDisabled}
+          >
+            Войти
+          </button>
           <div className={s.login__row}>
             <span className={s.login__regtext}>Еще не зарегестрированы?</span>
             <button
               type="button"
-              className={s.login__link}
+              className={s.login__redirect}
               onClick={onRegistrationRedirect}
             >
               Регистрация

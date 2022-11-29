@@ -165,7 +165,7 @@ position: relative;
 
   &__bottom {
 
-
+position: relative;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -207,9 +207,20 @@ position: relative;
     background: #ff6838;
     border-radius: 3px;
     font-weight: 500;
+    &_disable {
+      background: #a0a0a0;
+    }
 
 
+  }
 
+  &__errText {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ee3465;
+    width: 100%;
   }
 
 
@@ -224,7 +235,7 @@ position: relative;
 
 
 
-  &__link {
+    &__redirect {
 
     margin: 0;
     padding: 0;
@@ -232,8 +243,6 @@ position: relative;
     border: none;
     color: #ff6838;
     text-decoration: none;
-
-
 
   }
 

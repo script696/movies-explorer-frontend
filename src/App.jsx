@@ -5,18 +5,14 @@ import AuthRouter from "./components/AuthRouter/AuthRouter";
 import { PageNotFound } from "./pages";
 import { useEffect, useState } from "react";
 import mainApi from "./utils/MainApi";
-import { useMainApiContext } from "./hooks/useMainApiContext";
+import { useUserContext } from "./hooks/useUserContext";
 
 const App = () => {
-  const { isLoggedIn, checkAuth } = useMainApiContext();
+  const { isLoggedIn, checkAuth } = useUserContext();
 
   useEffect(() => {
     checkAuth();
   }, []);
-
-  useEffect(() => {
-    console.log(isLoggedIn);
-  }, [isLoggedIn]);
 
   return (
     <Switch>

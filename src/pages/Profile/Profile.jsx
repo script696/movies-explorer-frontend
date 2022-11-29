@@ -2,14 +2,20 @@ import s from "./Profile.module.scss";
 import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { ROUTES } from "../../utils/constants/routes";
-import { useMainApiContext } from "../../hooks/useMainApiContext";
+import { useUserContext } from "../../hooks/useUserContext";
+import { useInput } from "../../hooks";
+import {
+  EMAIL_RULES,
+  NAME_RULES,
+} from "../../utils/constants/validatorRules";
 
 const Profile = () => {
   const { push } = useHistory();
-  const { setIsLoggedIn } = useMainApiContext();
+  const { setIsLoggedIn, userInfo } = useUserContext();
 
-  const name = "Виталий";
-  const mail = "nik696@uandex.ru";
+  const email = useInput({ initialVal: userInfo.email, rules: EMAIL_RULES });
+  const name = useInput({ initialVal: userInfo.name, rules: NAME_RULES });
+
   const [isFormEdit, setIsFormEdit] = useState(false);
 
   const onLogout = () => {
@@ -18,17 +24,22 @@ const Profile = () => {
     push(ROUTES.MAIN);
   };
 
+  const onSubmit = () => {
+
+  }
+
   return (
     <section className={s.profile}>
-      <form className={s.profile__form}>
-        <h2 className={s.profile__title}>Привет, Виталий</h2>
+      <form className={s.profile__form} onSubmit={}>
+        <h2 className={s.profile__title}>{`Привет, ${userInfo.name}`}</h2>
         <div className={s.profile__formFields}>
           <div className={s.profile__formField}>
             <p className={s.profile__fieldText}>Имя</p>
             <input
               className={s.profile__input}
               type="text"
-              value={name}
+              value={name.val}
+              onChange={name.onChange}
               name="name"
               disabled={!isFormEdit}
             />
@@ -38,7 +49,8 @@ const Profile = () => {
             <input
               className={s.profile__input}
               type="text"
-              value={mail}
+              value={email.val}
+              onChange={email.onChange}
               disabled={!isFormEdit}
             />
           </div>

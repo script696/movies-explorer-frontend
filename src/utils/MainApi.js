@@ -10,28 +10,24 @@ class Api {
     return localStorage.getItem("jwt");
   }
 
-  _getResponseData(res) {
-    if (!res.ok) {
-      return Promise.reject(`Ошибка: ${res.status}`);
-    }
-    return res.json();
-  }
-
   async _checkRes(res) {
     if (!res.ok) {
       const err = await res.json();
-      return Promise.reject(`Ошибка: ${err.message}`);
+      return Promise.reject(err);
     }
     return res.json();
   }
 
-  getUserInfo() {
-    return fetch(`${this._id}/users/me`, {
+  async getUserInfo() {
+    const res = await fetch(`${this._id}/users/me`, {
       headers: {
         ...this._headers,
         Authorization: `Bearer ${this._getToken()}`,
       },
-    }).then((res) => this._getResponseData(res));
+    });
+
+    const resParsed = await this._checkRes(res);
+    return resParsed;
   }
 
   async register(name, email, password) {
