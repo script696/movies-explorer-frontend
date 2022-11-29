@@ -1,0 +1,113 @@
+@import '../../styles/mixins';
+
+.techs {
+padding: 100px 0;
+  background: #f5f5f5;
+
+  @include tablet {
+    padding: 90px 0;
+  }
+
+  @include mobile {
+    padding: 70px 0;
+  }
+
+  &__wrapper {
+    max-width: 1180px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @include tablet {
+      padding: 0 50px;
+    }
+
+    @include mobile {
+      padding: 0 18px;
+    }
+  }
+
+  &__description {
+    padding: 90px 0 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    align-items: center;
+
+    @include tablet {
+      gap: 22px;
+      padding: 80px 0 83px;
+    }
+
+    @include mobile {
+      padding: 60px 0 50px;
+    }
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-weight: inherit;
+    color: inherit;
+    font-size: 50px;
+    line-height: 58px;
+    letter-spacing: -0.04em;
+
+    @include mobile {
+      font-size: 30px;
+      line-height: 36px;
+    }
+  }
+
+  &__text {
+    max-width: 460px;
+    margin: 0;
+    text-align: center;
+    letter-spacing: -0.04em;
+    line-height: 20px;
+
+    @include tablet {
+     font-size: 12px;
+      line-height: 18px;
+    }
+
+    @include mobile {
+      font-size: 11px;
+      line-height: 16px;
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    @include mobile {
+      justify-content: flex-start;
+      max-width: 178px;
+    }
+  }
+
+  &__tech {
+    width: 90px;
+    height: 60px;
+    background: #e8e8e8;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+
+    @include tablet {
+      width: 84px;
+      height: 57px;
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
+}
