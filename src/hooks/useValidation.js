@@ -40,9 +40,7 @@ const useValidation = ({ val, rules }) => {
           break;
         case "minLength":
           if (val.length < rules[key]) {
-            console.log("here");
             setIsMinLenErr(true);
-            console.log("here");
             setErrorText(ERRORS_TEXT.minLength);
           } else {
             setIsMinLenErr(false);
@@ -64,13 +62,10 @@ const useValidation = ({ val, rules }) => {
 
   useEffect(() => {
     if (isEmpty || isEmail || isMinLenErr || isMaxLenErr) {
-      console.log(isMinLenErr + " " + "err");
       setIsInputValid(false);
     } else setIsInputValid(true);
   }, [isEmpty, isEmail, isMinLenErr, isMaxLenErr]);
-  useEffect(() => {
-    console.log(isMinLenErr + "effect");
-  }, [isMinLenErr]);
+  useEffect(() => {}, [isMinLenErr]);
   return { isInputValid };
 };
 

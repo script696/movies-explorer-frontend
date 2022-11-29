@@ -1,6 +1,6 @@
 import s from "./Register.module.scss";
 import { logo } from "../../assets/images";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useInput } from "../../hooks";
 import getClassname from "../../utils/getClassname";
 import {
@@ -8,9 +8,14 @@ import {
   NAME_RULES,
   PASSWORD_RULES,
 } from "../../utils/constants/validatorRules";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useMainApiContext } from "../../hooks/useMainApiContext";
+import { ROUTES } from "../../utils/constants/routes";
 
 const Register = () => {
+  const { push } = useHistory();
+  const { handleRegistrationSubmit } = useMainApiContext();
+
   const email = useInput({ initialVal: "", rules: EMAIL_RULES });
   const password = useInput({ initialVal: "", rules: PASSWORD_RULES });
   const name = useInput({ initialVal: "", rules: NAME_RULES });
@@ -87,14 +92,22 @@ const Register = () => {
       nameHasErrAndDirty && s.register__errorMsg_active,
     ],
   };
-  useEffect(() => {
-    console.log(name.isInputValid + "validation");
-  }, [name.isInputValid]);
+
+  const onSubmit = async (e) => {
+    const res = await handleRegistrationSubmit(e);
+
+    if (res) push(ROUTES.MOVIES);
+  };
+
+  const onLoginRedirect = () => {
+    push(ROUTES.SIGNIN);
+  };
+
   return (
     <section className={s.register}>
       <img src={logo} alt="логотип" className={s.register__logo} />
       <h2 className={s.register__title}>Добро пожаловать!</h2>
-      <form className={s.register__form}>
+      <form className={s.register__form} onSubmit={onSubmit}>
         <div className={s.register__fields}>
           {formFields.map(
             ({ id, value, onChange, onBlur, fieldsTitle, type }) => (
@@ -104,6 +117,7 @@ const Register = () => {
               >
                 <span className={s.register__fieldTitle}>{fieldsTitle}</span>
                 <input
+                  id={id}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -125,9 +139,13 @@ const Register = () => {
           <button className={s.register__btn}>Зарегестрироваться</button>
           <div className={s.register__row}>
             <span className={s.register__regtext}>Уже зарегестрированы?</span>
-            <Link className={s.register__link} to="/">
+            <button
+              type="button"
+              className={s.register__link}
+              onClick={onLoginRedirect}
+            >
               Войти
-            </Link>
+            </button>
           </div>
         </div>
       </form>

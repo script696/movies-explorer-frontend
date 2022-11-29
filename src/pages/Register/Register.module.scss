@@ -1,7 +1,12 @@
 @import '../../styles/mixins';
 
-.register {
-  position: fixed;
+
+
+
+.register {
+
+
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -10,52 +15,100 @@
   min-width: 396px;
 
   @include mobile {
-    min-width: 260px;
-    align-items: center;
-  }
 
-&__logo {
-  width: 38px;
+
+    min-width: 260px;
+    align-items: center;
+
+
+
+  }
+
+
+
+&__logo {
+
+
+  width: 38px;
     height: 38px;
     margin: 0 0 40px;
 
     @include mobile {
-    margin: 0 0 50px;
-  }
-}
 
-  &__title {
-    margin: 0 0 40px;
+
+    margin: 0 0 50px;
+
+
+
+  }
+
+
+}
+
+
+
+  &__title {
+
+
+    margin: 0 0 40px;
     color: inherit;
     font-weight: 500;
     font-size: 24px;
     line-height: 29px;
 
     @include mobile {
-      margin: 0 0 80px;
-    }
-  }
 
-  &__form {
-    width: 100%;
+
+      margin: 0 0 80px;
+
+
+
+    }
+
+
+  }
+
+
+
+  &__form {
+
+
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 24px;
-  }
 
-  &__fields {
-    margin-bottom: 150px;
+
+
+  }
+
+
+
+  &__fields {
+
+
+    margin-bottom: 150px;
     display: flex;
     flex-direction: column;
     gap: 24px;
 
     @include mobile {
-      margin-bottom: 240px;
-    }
-  }
 
-  &__errorMsg {
-    display: none;
+
+      margin-bottom: 240px;
+
+
+
+
+    }
+
+
+  }
+
+
+  &__errorMsg {
+
+    display: none;
     color: #ee3465;
     font-size: 10px;
     line-height: 12px;
@@ -64,64 +117,124 @@
     bottom: -45%;
 
     &_active {
-      display: inline-block;
-    }
-  }
 
-  &__field {
-position: relative;
+      display: inline-block;
+
+    }
+
+  }
+
+
+  &__field {
+
+position: relative;
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid #e8e8e8;
 
     &_withErr {
-  border-bottom: 1px solid #ee3465;
-    }
-  }
 
-  &__fieldTitle {
-    margin-bottom: 8px;
+  border-bottom: 1px solid #ee3465;
+
+
+    }
+
+  }
+
+
+
+  &__fieldTitle {
+
+
+    margin-bottom: 8px;
     font-size: 10px;
     line-height: 12px;
     color: #a0a0a0;
-  }
 
-  &__fieldInput {
-    border: none;
+
+  }
+
+
+
+  &__fieldInput {
+
+
+    border: none;
 
     &_withErr {
-    color: #ee3465;
-    }
-  }
 
-  &__bottom {
-    display: flex;
+
+    color: #ee3465;
+
+    }
+
+
+
+  }
+
+
+
+  &__bottom {
+
+
+    display: flex;
     flex-direction: column;
     gap: 16px;
-  }
 
-  &__row {
-    display: flex;
+
+  }
+
+
+
+  &__row {
+
+
+    display: flex;
     justify-content: center;
     gap: 6px;
-  }
 
-  &__btn {
-    border: none;
+
+  }
+
+
+
+  &__btn {
+
+
+    border: none;
     color: #fff;
     width: 100%;
     height: 45px;
     background: #ff6838;
     border-radius: 3px;
     font-weight: 500;
-  }
 
-  &__regtext {
-    color: #a0a0a0;
-  }
 
-  &__link {
-    color: #ff6838;
+  }
+
+
+
+  &__regtext {
+
+
+    color: #a0a0a0;
+
+
+  }
+
+
+
+  &__link {
+
+background: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    color: #ff6838;
     text-decoration: none;
-  }
-}
+
+
+  }
+
+
+}

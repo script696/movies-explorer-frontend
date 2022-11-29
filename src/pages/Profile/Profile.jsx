@@ -1,12 +1,22 @@
 import s from "./Profile.module.scss";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { ROUTES } from "../../utils/constants/routes";
+import { useMainApiContext } from "../../hooks/useMainApiContext";
 
 const Profile = () => {
+  const { push } = useHistory();
+  const { setIsLoggedIn } = useMainApiContext();
+
   const name = "Виталий";
   const mail = "nik696@uandex.ru";
   const [isFormEdit, setIsFormEdit] = useState(false);
-  const [profile, setProfile] = useState({ name, mail });
+
+  const onLogout = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    push(ROUTES.MAIN);
+  };
 
   return (
     <section className={s.profile}>
@@ -57,9 +67,13 @@ const Profile = () => {
               Редактировать
             </button>
           )}
-          <Link to="/" className={s.profile__logout}>
+          <button
+            type="button"
+            onClick={onLogout}
+            className={s.profile__logout}
+          >
             Выйти из аккаунта
-          </Link>
+          </button>
         </div>
       </form>
     </section>
