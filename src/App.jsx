@@ -3,22 +3,16 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import { authProtectedRoutes, publicRoutes } from "./utils/navigationRoutes";
 import AuthRouter from "./components/AuthRouter/AuthRouter";
 import { PageNotFound } from "./pages";
-import { useEffect, useState } from "react";
+// import { useEffect, useLayotEffect, useState } from "react";
 import mainApi from "./utils/MainApi";
 import { useUserContext } from "./hooks/useUserContext";
+import { useLayoutEffect } from "react";
 
 const App = () => {
-  const { isLoggedIn, checkAuth } = useUserContext();
-
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
   return (
     <Switch>
       {authProtectedRoutes.map(({ id, path, component, layout }) => (
         <AuthRouter
-          isLogin={isLoggedIn}
           key={id}
           path={path}
           component={component}
@@ -29,7 +23,6 @@ const App = () => {
       ))}
       {publicRoutes.map(({ id, path, component, layout }) => (
         <AuthRouter
-          isLogin={isLoggedIn}
           key={id}
           path={path}
           component={component}

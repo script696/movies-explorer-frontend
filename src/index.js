@@ -4,12 +4,15 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import "./styles/index.scss";
 import { UserProvider } from "./hooks/useUserContext";
+import { MoviesProvider } from "./hooks/useMoviesContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <UserProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <MoviesProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </MoviesProvider>
   </UserProvider>
 );

@@ -19,6 +19,7 @@ export const UserProvider = ({ children }) => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
       setIsLoggedIn(true);
+      return true;
     }
   };
 
@@ -60,7 +61,17 @@ export const UserProvider = ({ children }) => {
       const res = await mainApi.getUserInfo();
       setUserInfo({ name: res.data.name, email: res.data.email });
     } catch (e) {
-      console.log(e);
+      setApiError({ isError: true, message: e.message });
+    }
+  };
+  const updateUser = async (e) => {
+    e.preventDefault();
+    const { name, email } = e.target;
+
+    try {
+      const res = await mainApi.updateUserInfo(name.value, email.value);
+      setUserInfo({ name: res.data.name, email: res.data.email });
+    } catch (e) {
       setApiError({ isError: true, message: e.message });
     }
   };
@@ -76,6 +87,7 @@ export const UserProvider = ({ children }) => {
         handleRegistrationSubmit,
         handleLoginSubmit,
         getUser,
+        updateUser,
         userInfo,
         isLoggedIn,
         checkAuth,

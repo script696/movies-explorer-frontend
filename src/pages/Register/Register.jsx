@@ -14,7 +14,7 @@ import { ROUTES } from "../../utils/constants/routes";
 
 const Register = () => {
   const { push } = useHistory();
-  const { handleRegistrationSubmit, apiError, getUser } = useUserContext();
+  const { handleRegistrationSubmit, apiError } = useUserContext();
 
   const email = useInput({ initialVal: "", rules: EMAIL_RULES });
   const password = useInput({ initialVal: "", rules: PASSWORD_RULES });

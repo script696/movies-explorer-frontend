@@ -29,6 +29,19 @@ class Api {
     const resParsed = await this._checkRes(res);
     return resParsed;
   }
+  async updateUserInfo(name, email) {
+    const res = await fetch(`${this._id}/users/me`, {
+      method: "PATCH",
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${this._getToken()}`,
+      },
+      body: JSON.stringify({ name, email }),
+    });
+
+    const resParsed = await this._checkRes(res);
+    return resParsed;
+  }
 
   async register(name, email, password) {
     const res = await fetch(`${this._id}/signup`, {

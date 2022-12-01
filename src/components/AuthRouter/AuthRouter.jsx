@@ -1,19 +1,28 @@
 import { Redirect, Route } from "react-router-dom";
 import { PUBLIC_ROUTES } from "../../utils/navigationRoutes";
 import Layout from "../Layout/Layout";
+import { useUserContext } from "../../hooks/useUserContext";
+import { useLayoutEffect } from "react";
 
 const AuthRouter = ({
   component: Component,
   layout: Layout,
   protect = false,
-  isLogin,
   ...rest
 }) => {
+  const { isLoggedIn, checkAuth } = useUserContext();
+
+  useLayoutEffect(() => {
+    checkAuth();
+  }, []);
+  console.log(isLoggedIn, protect);
+
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (!isLogin && protect) {
+        if (!localStorage.getItem("jwt") && protect) {
+          console.log("redirect");
           return (
             <Redirect
               to={{
@@ -24,7 +33,7 @@ const AuthRouter = ({
         }
 
         return Layout ? (
-          <Layout isAuth={isLogin}>
+          <Layout isAuth={isLoggedIn}>
             <Component {...props} />
           </Layout>
         ) : (

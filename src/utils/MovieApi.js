@@ -4,29 +4,28 @@ class Api {
     this._headers = headers;
   }
 
-  _getToken() {
-    return localStorage.getItem("jwt");
-  }
-
-  _getResponseData(res) {
+  async _checkRes(res) {
     if (!res.ok) {
-      return Promise.reject(`Ошибка: ${res.status}`);
+      const err = await res.json();
+      return Promise.reject(err);
     }
     return res.json();
   }
 
-  getUserInfo() {
-    return fetch(`${this._id}/users/me`, {
+  async getAllMovies() {
+    const res = await fetch(`${this._id}/users/me`, {
       headers: {
         ...this._headers,
-        Authorization: `Bearer ${this._getToken()}`,
       },
-    }).then((res) => this._getResponseData(res));
+    });
+    const resParsed = await this._checkRes(res);
+
+    return resParsed;
   }
 }
 
 const movieApi = new Api({
-  id: "https://api.script696.students.nomoredomains.icu",
+  id: "https://api.nomoreparties.co/beatfilm-movies",
   headers: {
     "Content-Type": "application/json",
   },
