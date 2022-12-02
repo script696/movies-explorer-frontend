@@ -2,7 +2,7 @@ import s from "./MoviesCard.module.scss";
 import getClassname from "../../utils/getClassname";
 
 const MoviesCard = ({
-  movie: { title, duration, img, isSaved, onSave },
+  movie: { nameRU, duration, img, isSaved, onSave },
   reversed,
 }) => {
   const btnStyle = [
@@ -16,10 +16,10 @@ const MoviesCard = ({
   return (
     <article className={s.moviesCard}>
       <div className={s.moviesCard__top}>
-        <p className={s.moviesCard__title}>{title}</p>
+        <p className={s.moviesCard__title}>{nameRU}</p>
         <p className={s.moviesCard__duration}>{`${duration} минут`}</p>
       </div>
-      <img className={s.moviesCard__logo} src={img} alt={title} />
+      <img className={s.moviesCard__logo} src={img} alt={nameRU} />
       <div className={s.moviesCard__bottom}>
         <button
           onClick={() => console.log("click")}

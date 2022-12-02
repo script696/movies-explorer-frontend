@@ -12,8 +12,8 @@ class Api {
     return res.json();
   }
 
-  async getAllMovies() {
-    const res = await fetch(`${this._id}/users/me`, {
+  async getMovies() {
+    const res = await fetch(`${this._id}`, {
       headers: {
         ...this._headers,
       },

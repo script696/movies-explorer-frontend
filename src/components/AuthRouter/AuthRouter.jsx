@@ -15,14 +15,12 @@ const AuthRouter = ({
   useLayoutEffect(() => {
     checkAuth();
   }, []);
-  console.log(isLoggedIn, protect);
 
   return (
     <Route
       {...rest}
       render={(props) => {
         if (!localStorage.getItem("jwt") && protect) {
-          console.log("redirect");
           return (
             <Redirect
               to={{
