@@ -24,7 +24,7 @@ const Checkbox = () => {
         className={s.checkbox__input}
         type="checkbox"
         id="checkbox"
-        name="isShort"
+        name="isChecked"
         onChange={onCheckboxChange}
         checked={isChecked}
       />

@@ -1,134 +1,84 @@
 @import '../../styles/mixins';
 
-.aboutProject {
-  padding: 110px 0;
+.aboutProject {padding: 110px 0;
 
-  @include tablet {
-    padding: 90px 0;
-  }
+  @include tablet { padding: 90px 0;}
 
-  @include mobile {
-    padding: 70px 0;
-  }
+  @include mobile { padding: 70px 0;}
 
-  &__wrapper {
-    max-width: 1180px;
+  &__wrapper {max-width: 1180px;
     padding: 0 20px;
     box-sizing: border-box;
     margin: auto;
 
-    @include tablet {
-      padding: 0 50px;
-    }
+    @include tablet { padding: 0 50px;}
 
-    @include mobile {
-      padding: 0 18px;
-    }
-  }
+    @include mobile { padding: 0 18px;}}
 
-  &__description {
-    display: flex;
+  &__description {display: flex;
     padding: 70px 0 110px;
     justify-content: space-between;
 
-    @include tablet {
-      padding: 70px 0 93px;
-      gap: 30px;
-    }
+    @include tablet {padding: 70px 0 93px;
+      gap: 30px;}
 
-    @include mobile {
-      padding: 60px 0 63px;
+    @include mobile {padding: 60px 0 63px;
       flex-direction: column;
-      gap: 56px;
-    }
-  }
+      gap: 56px;}}
 
-  &__col {
-    display: flex;
+  &__col {display: flex;
     flex-direction: column;
     gap: 26px;
 
-    @include tablet {
-max-width: 319px;
-    }
+    @include tablet { max-width: 319px;}
 
-    @include mobile {
-     gap: 16px;
-    }
-  }
+    @include mobile { gap: 16px;}}
 
-  &__subtitle {
-    margin: 0;
+  &__subtitle {margin: 0;
     font-weight: inherit;
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.04em;
 
-    @include mobile {
-      font-size: 18px;
-      line-height: 22px;
-    }
-  }
+    @include mobile {font-size: 18px;
+      line-height: 22px;}}
 
-  &__text {
-    margin: 0;
+  &__text {margin: 0;
     line-height: 20px;
     max-width: 550px;
 
-    @include tablet {
-      font-size: 12px;
-      line-height: 18px;
-    }
+    @include tablet {font-size: 12px;
+      line-height: 18px;}
 
-    @include mobile {
-      font-size: 11px;
-      line-height: 16px;
-    }
-  }
+    @include mobile {font-size: 11px;
+      line-height: 16px;}}
 
-  &__duration {
-    display: grid;
+  &__duration {display: grid;
     grid-template-columns: 1fr 4fr;
     row-gap: 14px;
 
-    @include mobile {
-      grid-template-columns: 100px 1fr;
-    }
-  }
+    @include mobile { grid-template-columns: 100px 1fr;}}
 
-  &__back {
-    display: flex;
+  &__back {display: flex;
     justify-content: center;
     background: #2be080;
     padding: 9px 0;
 
-    @include mobile {
-      font-size: 11px;
-      line-height: 13px;
-    }
-  }
+    @include mobile {font-size: 11px;
+      line-height: 13px;}}
 
-  &__front {
-    display: flex;
+  &__front {display: flex;
     justify-content: center;
     background: #f2f2f2;
     padding: 9px 0;
 
-    @include mobile {
-      font-size: 11px;
-      line-height: 13px;
-    }
-  }
+    @include mobile {font-size: 11px;
+      line-height: 13px;}}
 
-  &__durationText {
-    margin: 0;
+  &__durationText {margin: 0;
     display: flex;
     justify-content: center;
     color: #a0a0a0;
 
-    @include mobile {
-      font-size: 11px;
-      line-height: 13px;
-    }
-  }
-}
+    @include mobile {font-size: 11px;
+      line-height: 13px;}}}

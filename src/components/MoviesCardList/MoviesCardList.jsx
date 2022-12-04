@@ -4,7 +4,6 @@ import getClassname from "../../utils/getClassname";
 
 const MoviesCardList = ({ movies, reversed }) => {
   const isMoviesFound = movies?.length;
-
   const moviesCardListStyles = [
     s.moviesCardList,
     isMoviesFound || s.moviesCardList_style_not_found,
@@ -14,7 +13,7 @@ const MoviesCardList = ({ movies, reversed }) => {
       {isMoviesFound ? (
         <div className={s.moviesCardList__grid}>
           {movies?.map((movie) => (
-            <MoviesCard key={movie.id} movie={movie} reversed={reversed} />
+            <MoviesCard key={movie.movieId} movie={movie} reversed={reversed} />
           ))}
         </div>
       ) : (

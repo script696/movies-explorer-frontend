@@ -18,6 +18,45 @@ class Api {
     return res.json();
   }
 
+  async getSavedMovies(movie) {
+    const res = await fetch(`${this._id}/movies`, {
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${this._getToken()}`,
+      },
+      body: JSON.stringify(movie),
+    });
+
+    const resParsed = await this._checkRes(res);
+    return resParsed;
+  }
+
+  async createMovie(movie) {
+    const res = await fetch(`${this._id}/movies`, {
+      method: "POST",
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${this._getToken()}`,
+      },
+      body: JSON.stringify(movie),
+    });
+    const resParsed = await this._checkRes(res);
+    return resParsed;
+  }
+
+  async deleteMovie(id) {
+    const res = await fetch(`${this._id}/movies/${id}`, {
+      method: "DELETE",
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${this._getToken()}`,
+      },
+    });
+
+    const resParsed = await this._checkRes(res);
+    return resParsed;
+  }
+
   async getUserInfo() {
     const res = await fetch(`${this._id}/users/me`, {
       headers: {

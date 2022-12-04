@@ -2,13 +2,18 @@ import { Layout } from "./components";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { authProtectedRoutes, publicRoutes } from "./utils/navigationRoutes";
 import AuthRouter from "./components/AuthRouter/AuthRouter";
-import { PageNotFound } from "./pages";
-// import { useEffect, useLayotEffect, useState } from "react";
-import mainApi from "./utils/MainApi";
 import { useUserContext } from "./hooks/useUserContext";
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
+import { useMoviesContext } from "./hooks/useMoviesContext";
 
 const App = () => {
+  const { isLogin } = useUserContext();
+  const { getSavesMovies } = useMoviesContext();
+
+  useEffect(() => {
+    getSavesMovies();
+  }, [isLogin]);
+
   return (
     <Switch>
       {authProtectedRoutes.map(({ id, path, component, layout }) => (

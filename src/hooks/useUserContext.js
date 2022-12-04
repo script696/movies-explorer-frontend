@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import mainApi from "../utils/MainApi";
+import { useMoviesContext } from "./useMoviesContext";
 
 const apiErrorDefault = {
   isError: false,

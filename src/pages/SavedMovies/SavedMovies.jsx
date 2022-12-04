@@ -1,15 +1,13 @@
 import s from "./SavedMovies.module.scss";
 import { MoviesCardList, Preloader, SearchForm } from "../../components";
-import { mokedData } from "../Movies/mokedData";
 import { useEffect, useState } from "react";
+import { useMoviesContext } from "../../hooks/useMoviesContext";
 
 const SavedMovies = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const { getSavesMovies, savedMovies, isLoading } = useMoviesContext();
 
-  const filteredMovies = mokedData.filter((movie) => movie.isSaved);
   useEffect(() => {
-    const timeOutId = setTimeout(() => setIsLoading(false), 1000 * 3);
-    return () => clearTimeout(timeOutId);
+    getSavesMovies();
   }, []);
 
   return (
@@ -19,7 +17,7 @@ const SavedMovies = () => {
         {isLoading ? (
           <Preloader />
         ) : (
-          <MoviesCardList movies={filteredMovies} reversed />
+          <MoviesCardList movies={savedMovies} reversed />
         )}
       </div>
     </section>
