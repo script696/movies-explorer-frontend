@@ -3,6 +3,8 @@ import { PUBLIC_ROUTES } from "../../utils/navigationRoutes";
 import Layout from "../Layout/Layout";
 import { useUserContext } from "../../hooks/useUserContext";
 import { useLayoutEffect } from "react";
+import { Modal } from "../index";
+import { useErrorHandler } from "../../hooks";
 
 const AuthRouter = ({
   component: Component,
@@ -15,7 +17,6 @@ const AuthRouter = ({
   useLayoutEffect(() => {
     checkAuth();
   }, []);
-
   return (
     <Route
       {...rest}
@@ -35,7 +36,9 @@ const AuthRouter = ({
             <Component {...props} />
           </Layout>
         ) : (
-          <Component {...props} />
+          <>
+            <Component {...props} />
+          </>
         );
       }}
     />

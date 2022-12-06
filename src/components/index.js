@@ -13,3 +13,4 @@ export { default as MoviesCardList } from "./MoviesCardList/MoviesCardList";
 export { default as MoviesCard } from "./MoviesCard/MoviesCard";
 export { default as Checkbox } from "./Checkbox/Checkbox";
 export { default as Preloader } from "./Preloader/Preloader";
+export { default as Modal } from "./Modal/Modal";

@@ -12,8 +12,8 @@ const Movies = () => {
     updateMovies,
     onMoreMoviesClick,
   } = useMoviesContext();
-  const onSubmit = async (e) => {
-    await onMoviesSearchSubmit(e);
+  const onSubmit = (e) => {
+    onMoviesSearchSubmit(e);
   };
 
   useEffect(() => {

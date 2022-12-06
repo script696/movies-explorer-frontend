@@ -12,7 +12,11 @@ const useInput = ({ initialVal, rules }) => {
   const onBlur = (e) => {
     setIsDirty(true);
   };
-  return { val, isDirty, onChange, onBlur, isInputValid };
+
+  const setInitialValue = (value) => {
+    setVal(value);
+  };
+  return { val, isDirty, onChange, onBlur, isInputValid, setInitialValue };
 };
 
 export default useInput;

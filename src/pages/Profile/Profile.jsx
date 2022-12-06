@@ -1,15 +1,15 @@
 import s from "./Profile.module.scss";
 import { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { ROUTES } from "../../utils/constants/routes";
-import { useUserContext } from "../../hooks/useUserContext";
-import { useInput } from "../../hooks";
+import { useInput, useMoviesContext, useUserContext } from "../../hooks";
 import { EMAIL_RULES, NAME_RULES } from "../../utils/constants/validatorRules";
 import getClassname from "../../utils/getClassname";
 
 const Profile = () => {
   const { push } = useHistory();
-  const { setIsLoggedIn, userInfo, updateUser } = useUserContext();
+  const { setIsLoggedIn, updateUser, userInfo, getUser } = useUserContext();
+  const { onLogoutMoviesHandler } = useMoviesContext();
 
   const email = useInput({ initialVal: userInfo.email, rules: EMAIL_RULES });
   const name = useInput({ initialVal: userInfo.name, rules: NAME_RULES });
@@ -28,13 +28,23 @@ const Profile = () => {
   ];
 
   const onLogout = () => {
-    localStorage.removeItem("jwt");
+    localStorage.clear();
     setIsLoggedIn(false);
+    onLogoutMoviesHandler();
     push(ROUTES.MAIN);
   };
   const onSubmit = async (e) => {
     await updateUser(e);
   };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    email.setInitialValue(userInfo.email);
+    name.setInitialValue(userInfo.name);
+  }, [userInfo]);
 
   return (
     <section className={s.profile}>

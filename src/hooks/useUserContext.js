@@ -29,11 +29,11 @@ export const UserProvider = ({ children }) => {
     const { name, email, password } = e.target;
 
     try {
-      const res = await mainApi.register(
-        name.value,
-        email.value,
-        password.value
-      );
+      await mainApi.register(name.value, email.value, password.value);
+
+      const res = await mainApi.authorize(email.value, password.value);
+
+      localStorage.setItem("jwt", res.token);
 
       setIsLoggedIn(true);
       return res;
@@ -41,10 +41,7 @@ export const UserProvider = ({ children }) => {
       setApiError({ isError: true, message: e.message });
     }
   };
-  const handleLoginSubmit = async (e) => {
-    e.preventDefault();
-    const { email, password } = e.target;
-
+  const handleLoginSubmit = async (email, password) => {
     try {
       const res = await mainApi.authorize(email.value, password.value);
 
@@ -59,8 +56,9 @@ export const UserProvider = ({ children }) => {
 
   const getUser = async () => {
     try {
-      const res = await mainApi.getUserInfo();
-      setUserInfo({ name: res.data.name, email: res.data.email });
+      const { data } = await mainApi.getUserInfo();
+      setUserInfo({ name: data.name, email: data.email });
+      return data;
     } catch (e) {
       setApiError({ isError: true, message: e.message });
     }

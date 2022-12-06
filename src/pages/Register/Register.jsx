@@ -14,7 +14,7 @@ import { ROUTES } from "../../utils/constants/routes";
 
 const Register = () => {
   const { push } = useHistory();
-  const { handleRegistrationSubmit, apiError } = useUserContext();
+  const { handleRegistrationSubmit, apiError, isLoggedIn } = useUserContext();
 
   const email = useInput({ initialVal: "", rules: EMAIL_RULES });
   const password = useInput({ initialVal: "", rules: PASSWORD_RULES });
@@ -111,6 +111,11 @@ const Register = () => {
   const onLoginRedirect = () => {
     push(ROUTES.SIGNIN);
   };
+
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    push(ROUTES.MAIN);
+  }, [isLoggedIn]);
 
   return (
     <section className={s.register}>

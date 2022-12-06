@@ -13,7 +13,7 @@ import { useUserContext } from "../../hooks/useUserContext";
 
 const Login = () => {
   const { push } = useHistory();
-  const { handleLoginSubmit, apiError, getUser } = useUserContext();
+  const { handleLoginSubmit, apiError, isLoggedIn } = useUserContext();
 
   const email = useInput({ initialVal: "", rules: EMAIL_RULES });
   const password = useInput({ initialVal: "", rules: PASSWORD_RULES });
@@ -81,17 +81,21 @@ const Login = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
+    const { email, password } = e.target;
 
-    const res = await handleLoginSubmit(e);
+    const res = await handleLoginSubmit(email, password);
 
-    if (!res) return;
-    await getUser();
-    push(ROUTES.MOVIES);
+    if (res) push(ROUTES.MOVIES);
   };
 
   const onRegistrationRedirect = () => {
     push(ROUTES.SIGNUP);
   };
+
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    push(ROUTES.MAIN);
+  }, [isLoggedIn]);
 
   return (
     <section className={s.login}>

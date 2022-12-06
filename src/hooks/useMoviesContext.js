@@ -5,7 +5,7 @@ import {
   IMG_BASE_URL,
   SHORT_FILM_DURATION,
 } from "../utils/constants/moviesSettings";
-import { useLocalStorage } from "./index";
+import useLocalStorage from "./useLocalStorage";
 import useWindowDimensions from "./useWindowDimensions";
 import { PARAMS } from "../utils/constants/windowResize";
 import mainApi from "../utils/MainApi";
@@ -26,6 +26,7 @@ export const MoviesProvider = ({ children }) => {
   const [savedMovies, setSavedMovies] = useState(null);
   const [moviesAtPageParams, setMoviesAtPageParams] = useState(PARAMS.desktop);
   const [filters, setFilters] = useState({ searchQuery: "", isShort: false });
+  const [isMoreButtonDisabled, setIsMoreButtonDisabled] = useState(false);
   const filteredMovies = useRef(null);
 
   const isLoading = useRef(false);
@@ -46,7 +47,7 @@ export const MoviesProvider = ({ children }) => {
     const isShort = isChecked.checked;
 
     if (!allMovies) {
-      const res = await fetchMovies();
+      const res = await getAllMovies();
       const movies = moviesMapper(res);
       setAllMovies(movies);
       setFilters({ searchQuery, isShort });
@@ -56,10 +57,10 @@ export const MoviesProvider = ({ children }) => {
   };
 
   /**
-   * Функция запроса фильмов
+   * Функция запрашивает все фильмы со стороннего API
    * @returns {Promise<Array>}
    */
-  const fetchMovies = async () => {
+  const getAllMovies = async () => {
     isLoading.current = true;
     try {
       const res = await movieApi.getMovies();
@@ -71,6 +72,10 @@ export const MoviesProvider = ({ children }) => {
     }
   };
 
+  /**
+   * Функция запрашивает все сохраненные фильмы
+   * @returns {Promise<void>}
+   */
   const getSavesMovies = async () => {
     isLoading.current = true;
     try {
@@ -83,39 +88,45 @@ export const MoviesProvider = ({ children }) => {
     }
   };
 
+  /**
+   * Функция сохраняет выбранный пользователем фильм
+   * @param {object} movieData - объект с данными фильма
+   * @returns {Promise<void>}
+   */
   const saveMovieHandler = async (movieData) => {
     try {
-      const { data } = await mainApi.createMovie(movieData);
-      console.log(data);
-    } catch (e) {
-      setApiError({ isError: true, message: e.message });
-    }
-  };
-
-  const updateSavedMoviesHandler = (id) => {
-    const filteredSavedMovies = savedMovies.filter(
-      (movie) => movie.movieId !== id
-    );
-    setSavedMovies(filteredSavedMovies);
-  };
-
-  const deleteMovieHandler = async (id) => {
-    try {
-      const { data } = await mainApi.deleteMovie(id);
-      updateSavedMoviesHandler(data.movieId);
+      await mainApi.createMovie(movieData);
     } catch (e) {
       setApiError({ isError: true, message: e.message });
     }
   };
 
   /**
-   *
+   * Функция удаляет выбранный пользователем фильм
+   * @param {number} id - объект с данными фильма
+   * @returns {Promise<void>}
+   */
+  const deleteMovieHandler = async (id) => {
+    try {
+      const { data } = await mainApi.deleteMovie(id);
+
+      const filteredSavedMovies = savedMovies.filter(
+        (movie) => movie.movieId !== data.movieId
+      );
+
+      setSavedMovies(filteredSavedMovies);
+    } catch (e) {
+      setApiError({ isError: true, message: e.message });
+    }
+  };
+
+  /**
+   * Функция маппер
    * @param {Array<object>} movies - массив фильмов
    * @returns {Array<object>} - массив фильмов
    */
   const moviesMapper = (movies) => {
     return movies.map((movie) => {
-      console.log(`${IMG_BASE_URL}${movie.image.url}`);
       return {
         movieId: movie.id,
         nameRU: movie.nameRU,
@@ -132,21 +143,22 @@ export const MoviesProvider = ({ children }) => {
     });
   };
 
-  const setMoviesToStorage = (movies, queryValue, isShortValue) => {
-    setItemsToLocaleStorage({
-      moviesQuery: queryValue,
-      moviesIsShort: isShortValue,
-      moviesArray: movies,
-    });
+  const onLogoutMoviesHandler = () => {
+    setAllMovies(null);
+    setSavedMovies(null);
+    filteredMovies.current = null;
   };
 
   const updateMovies = () => {
-    const { moviesArray, moviesQuery, moviesIsShort } = getItemsFromStorage([
+    const { moviesArray, currentMoviesLength } = getItemsFromStorage([
       "moviesArray",
-      "moviesQuery",
-      "moviesIsShort",
+      "currentMoviesLength",
     ]);
-    setMoviesArray(moviesArray);
+    if (!moviesArray) return;
+
+    filteredMovies.current = moviesArray;
+    const firstMoviesChunk = getChunk(moviesArray, currentMoviesLength);
+    setMoviesArray(firstMoviesChunk);
   };
 
   const moviesFilter = (movies, query, isShortFilter = false) => {
@@ -167,29 +179,56 @@ export const MoviesProvider = ({ children }) => {
   const onMoreMoviesClick = () => {
     const currentMoviesRenderedLength = moviesArray.length;
     const increment = moviesAtPageParams.increment;
+    const chunkSize = currentMoviesRenderedLength + increment;
+    const moviesChunk = filteredMovies.current.slice(0, chunkSize);
 
-    setMoviesArray(
-      filteredMovies.current.slice(0, currentMoviesRenderedLength + increment)
+    setMoviesArray(moviesChunk);
+
+    setItemsToLocaleStorage({
+      currentMoviesLength: chunkSize,
+    });
+  };
+
+  const filterSavedMoviesHandler = async (e) => {
+    e.preventDefault();
+
+    const { query, isChecked } = e.target;
+
+    const filteredSavedMovies = moviesFilter(
+      savedMovies,
+      query.value,
+      isChecked.checked
     );
+    setSavedMovies(filteredSavedMovies);
   };
 
   const getChunk = (arr, chunkSize) => {
     return arr.slice(0, chunkSize);
   };
 
-  const testFoo = () => {
+  const onChangeSearchParams = () => {
     const { searchQuery, isShort } = filters;
     const res = moviesFilter(allMovies, searchQuery, isShort);
     filteredMovies.current = res;
     const initialMoviesChunk = getChunk(res, moviesAtPageParams.initialNumber);
     setMoviesArray(initialMoviesChunk);
 
-    setMoviesToStorage(
-      initialMoviesChunk,
-      filters.searchQuery,
-      filters.isShort
-    );
+    setItemsToLocaleStorage({
+      currentMoviesLength: moviesAtPageParams.initialNumber,
+      moviesQuery: filters.searchQuery,
+      moviesIsShort: filters.isShort,
+      moviesArray: res,
+    });
   };
+
+  useEffect(() => {
+    if (moviesArray === null || filteredMovies.current === null) return;
+    if (moviesArray.length === filteredMovies.current.length) {
+      setIsMoreButtonDisabled(true);
+    } else {
+      setIsMoreButtonDisabled(false);
+    }
+  }, [moviesArray]);
 
   useEffect(() => {
     setMoviesAtPageParams(windowMoviesConfig);
@@ -202,7 +241,7 @@ export const MoviesProvider = ({ children }) => {
 
   useEffect(() => {
     if (!allMovies) return;
-    testFoo();
+    onChangeSearchParams();
   }, [allMovies, filters]);
 
   return (
@@ -218,6 +257,9 @@ export const MoviesProvider = ({ children }) => {
         deleteMovieHandler,
         getSavesMovies,
         savedMovies,
+        isMoreButtonDisabled,
+        filterSavedMoviesHandler,
+        onLogoutMoviesHandler,
       }}
     >
       {children}

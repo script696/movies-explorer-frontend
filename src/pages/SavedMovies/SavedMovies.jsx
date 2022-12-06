@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import { useMoviesContext } from "../../hooks/useMoviesContext";
 
 const SavedMovies = () => {
-  const { getSavesMovies, savedMovies, isLoading } = useMoviesContext();
+  const { filterSavedMoviesHandler, getSavesMovies, savedMovies, isLoading } =
+    useMoviesContext();
+
+  const onSubmit = (e) => {
+    filterSavedMoviesHandler(e);
+  };
 
   useEffect(() => {
     getSavesMovies();
@@ -13,7 +18,7 @@ const SavedMovies = () => {
   return (
     <section className={s.savedMovies}>
       <div className={s.savedMovies__wrapper}>
-        <SearchForm />
+        <SearchForm onSearchSubmit={onSubmit} />
         {isLoading ? (
           <Preloader />
         ) : (
