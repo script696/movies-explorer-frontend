@@ -1,5 +1,5 @@
-const BASE_URL = "http://localhost:5000";
-//https://api.script696.students.nomoredomains.icu
+const BASE_URL = "https://api.script-movie.nomoredomains.icu";
+
 class Api {
   constructor({ id, headers }) {
     this._id = id;
