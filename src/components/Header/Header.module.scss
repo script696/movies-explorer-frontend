@@ -15,9 +15,9 @@
   min-height: 74px;
   z-index: 100;
 
-  @include tablet { padding: 0 30px;}
+  @include tablet { padding: 0 30px; }
 
-  @include mobile { padding: 0 14px;}
+  @include mobile { padding: 0 14px; }
 
   &__firstCol {display: flex;
     gap: 20px;
@@ -54,7 +54,7 @@
       box-sizing: border-box;
       z-index: 50;}
 
-    @include mobile { width: 100vw;}
+    @include mobile { width: 100vw; }
 
     &_active {opacity: 1;
       visibility: visible;
@@ -68,7 +68,7 @@
         background: #000;
         opacity: 0.3;
 
-        @include mobile { display: none;}}}}}
+        @include mobile { display: none; }}}}}
 
 .profile__link {display: flex;
   justify-content: center;
@@ -88,9 +88,9 @@
   z-index: 100;
   cursor: pointer;
 
-  @include tablet { display: block;}
+  @include tablet { display: block; }
 
-  @include mobile { right: 20px;}
+  @include mobile { right: 20px; }
 
   div {position: absolute;
     top: 50%;
@@ -114,9 +114,9 @@
     bottom: 0;
     left: 0;}
 
-  &_active div { width: 0;}
+  &_active div { width: 0; }
 
-  &_active div { width: 0;}
+  &_active div { width: 0; }
 
   &_active::before {top: 50%;
     left: 0;
@@ -135,21 +135,21 @@
     font-size: 12px;
     line-height: 16px;
 
-    &_color_white { color: #fff;}
+    &_color_white { color: #fff; }
 
     @include tablet {font-size: 18px;
       line-height: 22px;}
 
     &_visible_none {display: none;
 
-      @include tablet { display: block;}}
+      @include tablet { display: block; }}
 
     &_active {font-weight: 500;
 
       @include tablet {padding-bottom: 4px;
         border-bottom: 2px solid #000;}}
 
-    &_color_white { color: #fff;}
+    &_color_white { color: #fff; }
 
     &_style_signin {color: #000;
       background: #2be080;

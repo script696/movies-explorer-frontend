@@ -5,12 +5,10 @@ const useLocalStorage = () => {
     });
   };
 
-  const getItemsFromStorage = (itemsArray) => {
-    return itemsArray.reduce((acc, key) => {
-      const item = localStorage.getItem(key);
-      return { ...acc, [key]: JSON.parse(item) };
-    }, {});
-  };
+  const getItemsFromStorage = (itemsArray) => itemsArray.reduce((acc, key) => {
+    const item = localStorage.getItem(key);
+    return { ...acc, [key]: JSON.parse(item) };
+  }, {});
 
   return { setItemsToLocaleStorage, getItemsFromStorage };
 };

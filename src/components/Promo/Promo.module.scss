@@ -30,7 +30,7 @@
     justify-content: center;
     align-items: center;
 
-    @include mobile { padding: 0 10px;}}
+    @include mobile { padding: 0 10px; }}
 
   &__title {max-width: 730px;
     margin: 0;

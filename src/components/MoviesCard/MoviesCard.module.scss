@@ -8,7 +8,7 @@
     justify-content: space-between;
     padding: 18px;
 
-    @include mobile { padding: 14px;}}
+    @include mobile { padding: 14px; }}
 
   &__title {margin: 0;
     font-weight: 500;
@@ -30,15 +30,15 @@
     height: 200px;
     object-fit: cover;
 
-    @include tablet { height: 190px;}
+    @include tablet { height: 190px; }
 
-    @include mobile { height: 168px;}}
+    @include mobile { height: 168px; }}
 
   &__bottom {display: grid;
     place-items: center;
     padding: 18px;
 
-    @include mobile { padding: 14px;}}
+    @include mobile { padding: 14px; }}
 
   &__btn {cursor: pointer;
     border: none;
@@ -51,6 +51,6 @@
     font-size: 12px;
     line-height: 11px;
 
-    &_saved { background: #ee3465 url('../../assets/images/chevron.svg') center / 8px 4.5px no-repeat;}
+    &_saved { background: #ee3465 url('../../assets/images/chevron.svg') center / 8px 4.5px no-repeat; }
 
-    &_unSaved { background: #f9f9f9 url('../../assets/images/decline.svg') center / 6.8px 6.8px no-repeat;}}}
+    &_unSaved { background: #f9f9f9 url('../../assets/images/decline.svg') center / 6.8px 6.8px no-repeat; }}}

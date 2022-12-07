@@ -1,4 +1,5 @@
-const BASE_URL = "https://api.script-movie.nomoredomains.icu";
+const BASE_URL = "http://localhost:5000";
+const test = process.env.REACT_APP_BACKEND_URL;
 
 class Api {
   constructor({ id, headers }) {
@@ -68,6 +69,7 @@ class Api {
     const resParsed = await this._checkRes(res);
     return resParsed;
   }
+
   async updateUserInfo(name, email) {
     const res = await fetch(`${this._id}/users/me`, {
       method: "PATCH",
@@ -95,6 +97,7 @@ class Api {
     const resParsed = await this._checkRes(res);
     return resParsed;
   }
+
   async authorize(email, password) {
     const res = await fetch(`${this._id}/signin`, {
       method: "POST",

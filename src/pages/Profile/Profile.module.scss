@@ -6,7 +6,7 @@
   min-height: 100%;
   min-width: 410px;
 
-  @include mobile { min-width: 260px;}
+  @include mobile { min-width: 260px; }
 
   &__title {margin: 0 0 100px;
     font-weight: 500;
@@ -14,7 +14,7 @@
     line-height: 29px;
     text-align: center;
 
-    @include mobile { margin: 0 0 60px;}}
+    @include mobile { margin: 0 0 60px; }}
 
   &__form {width: 100%;
     display: flex;
@@ -22,19 +22,19 @@
     justify-content: center;
     align-items: center;
 
-    @include mobile { max-width: 260px;}}
+    @include mobile { max-width: 260px; }}
 
   &__formFields {width: 100%;
     max-width: 410px;
     margin: 0 0 200px;
 
-    @include mobile { margin: 0 0 355px;}}
+    @include mobile { margin: 0 0 355px; }}
 
   &__formField {padding: 17px 0;
     display: flex;
     justify-content: space-between;
 
-    &:not(:last-child) { border-bottom: 1px solid #e8e8e8;}}
+    &:not(:last-child) { border-bottom: 1px solid #e8e8e8; }}
 
   &__fieldText {margin: 0;
     font-weight: 500;
@@ -57,7 +57,7 @@
     font-size: 13px;
     line-height: 16px;
 
-    &_disable { opacity: 0.2;}}
+    &_disable { opacity: 0.2; }}
 
   &__logout {margin: 0;
     padding: 0;

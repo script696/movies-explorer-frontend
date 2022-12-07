@@ -19,7 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "stylelint **/*.{css,scss} --fix"
+    "lint": "stylelint **/*.{css,scss} --fix",
+    "fix": "eslint --fix --ext .js,.jsx ."
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +45,9 @@
     "prettier": "^2.6.2",
     "sass": "^1.54.4",
     "stylelint": "^14.14.0",
+    "eslint": "^8.23.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "stylelint-config-standard-scss": "^6.0.0"
   }
 }

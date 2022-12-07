@@ -1,6 +1,5 @@
 import s from "./MoviesMore.module.scss";
-import { useMoviesContext } from "../../hooks/useMoviesContext";
-import { useEffect } from "react";
+import { useMoviesContext } from "../../hooks";
 import getClassname from "../../utils/getClassname";
 
 const MoviesMore = ({ onMoreMoviesClick }) => {

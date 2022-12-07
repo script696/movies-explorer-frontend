@@ -16,7 +16,9 @@ const useInput = ({ initialVal, rules }) => {
   const setInitialValue = (value) => {
     setVal(value);
   };
-  return { val, isDirty, onChange, onBlur, isInputValid, setInitialValue };
+  return {
+    val, isDirty, onChange, onBlur, isInputValid, setInitialValue,
+  };
 };
 
 export default useInput;

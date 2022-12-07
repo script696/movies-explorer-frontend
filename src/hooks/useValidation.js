@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-const EMAIL_RE =
-  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+const EMAIL_RE = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 const useValidation = ({ val, rules }) => {
   const ERRORS_TEXT = {
@@ -18,7 +18,7 @@ const useValidation = ({ val, rules }) => {
   const [isInputValid, setIsInputValid] = useState(false);
 
   useEffect(() => {
-    for (let key in rules) {
+    for (const key in rules) {
       switch (key) {
         case "isEmail":
           if (!EMAIL_RE.test(val)) {

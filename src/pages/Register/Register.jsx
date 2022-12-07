@@ -9,12 +9,13 @@ import {
   PASSWORD_RULES,
 } from "../../utils/constants/validatorRules";
 import { useEffect, useState } from "react";
-import { useUserContext } from "../../hooks/useUserContext";
+import { useUserContext } from "../../hooks";
 import { ROUTES } from "../../utils/constants/routes";
 
 const Register = () => {
   const { push } = useHistory();
-  const { handleRegistrationSubmit, apiError, isLoggedIn } = useUserContext();
+  const { handleRegistrationSubmit, apiError, isLoggedIn, isPending } =
+    useUserContext();
 
   const email = useInput({ initialVal: "", rules: EMAIL_RULES });
   const password = useInput({ initialVal: "", rules: PASSWORD_RULES });
@@ -52,7 +53,7 @@ const Register = () => {
 
   const isFormValid =
     email.isInputValid && password.isInputValid && name.isInputValid;
-  const isSubmitBtnDisabled = !isFormValid || apiError.isError;
+  const isSubmitBtnDisabled = !isFormValid || apiError.isError || isPending;
 
   const sbmtButtonStyles = [
     s.register__btn,

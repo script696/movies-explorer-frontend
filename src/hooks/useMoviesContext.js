@@ -222,8 +222,7 @@ export const MoviesProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (moviesArray === null || filteredMovies.current === null) return;
-    if (moviesArray.length === filteredMovies.current.length) {
+    if (moviesArray?.length === filteredMovies.current?.length) {
       setIsMoreButtonDisabled(true);
     } else {
       setIsMoreButtonDisabled(false);

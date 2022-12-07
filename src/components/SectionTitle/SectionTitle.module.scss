@@ -4,7 +4,7 @@
   border-bottom: 1px solid #000;
   width: 100%;
 
-  @include mobile { padding-bottom: 28px;}
+  @include mobile { padding-bottom: 28px; }
 
   &__title {margin: 0;
     font-size: 22px;

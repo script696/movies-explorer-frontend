@@ -1,7 +1,7 @@
 import s from "./Login.module.scss";
 import { logo } from "../../assets/images";
-import { Link, useHistory } from "react-router-dom";
-import { useInput } from "../../hooks";
+import { useHistory } from "react-router-dom";
+import { useUserContext, useInput } from "../../hooks";
 import { useEffect } from "react";
 import getClassname from "../../utils/getClassname";
 import {
@@ -9,11 +9,11 @@ import {
   PASSWORD_RULES,
 } from "../../utils/constants/validatorRules";
 import { ROUTES } from "../../utils/constants/routes";
-import { useUserContext } from "../../hooks/useUserContext";
 
 const Login = () => {
   const { push } = useHistory();
-  const { handleLoginSubmit, apiError, isLoggedIn } = useUserContext();
+  const { handleLoginSubmit, apiError, isLoggedIn, isPending } =
+    useUserContext();
 
   const email = useInput({ initialVal: "", rules: EMAIL_RULES });
   const password = useInput({ initialVal: "", rules: PASSWORD_RULES });
@@ -42,7 +42,7 @@ const Login = () => {
   const passwordHasErrAndDirty = !password.isInputValid && password.isDirty;
 
   const isFormValid = email.isInputValid && password.isInputValid;
-  const isSubmitBtnDisabled = !isFormValid || apiError.isError;
+  const isSubmitBtnDisabled = !isFormValid || apiError.isError || isPending;
 
   const sbmtButtonStyles = [
     s.login__btn,

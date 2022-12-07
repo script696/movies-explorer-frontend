@@ -2,18 +2,18 @@
 
 .aboutProject {padding: 110px 0;
 
-  @include tablet { padding: 90px 0;}
+  @include tablet { padding: 90px 0; }
 
-  @include mobile { padding: 70px 0;}
+  @include mobile { padding: 70px 0; }
 
   &__wrapper {max-width: 1180px;
     padding: 0 20px;
     box-sizing: border-box;
     margin: auto;
 
-    @include tablet { padding: 0 50px;}
+    @include tablet { padding: 0 50px; }
 
-    @include mobile { padding: 0 18px;}}
+    @include mobile { padding: 0 18px; }}
 
   &__description {display: flex;
     padding: 70px 0 110px;
@@ -30,9 +30,9 @@
     flex-direction: column;
     gap: 26px;
 
-    @include tablet { max-width: 319px;}
+    @include tablet { max-width: 319px; }
 
-    @include mobile { gap: 16px;}}
+    @include mobile { gap: 16px; }}
 
   &__subtitle {margin: 0;
     font-weight: inherit;
@@ -57,7 +57,7 @@
     grid-template-columns: 1fr 4fr;
     row-gap: 14px;
 
-    @include mobile { grid-template-columns: 100px 1fr;}}
+    @include mobile { grid-template-columns: 100px 1fr; }}
 
   &__back {display: flex;
     justify-content: center;

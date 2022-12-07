@@ -3,13 +3,13 @@
 .searchForm {padding: 155px 0 40px;
   border-bottom: 1px solid #e8e8e8;
 
-  @include mobile { padding: 155px 4px 40px;}
+  @include mobile { padding: 155px 4px 40px; }
 
   &__form {display: flex;
     flex-direction: column;
     gap: 30px;
 
-    @include mobile { gap: 45px;}}
+    @include mobile { gap: 45px; }}
 
 &__customCheckbox {position: relative;
     width: 36px;
@@ -19,7 +19,7 @@
     justify-content: center;
     gap: 12px;
 
-    @include mobile { gap: 10px;}}
+    @include mobile { gap: 10px; }}
 
   &__checkbox {position: absolute;
     top: 0;
@@ -48,7 +48,7 @@
       background: #2be080;
       transition: all 0.2s linear;}
 
-    &_checked::before { right: 50%;}}
+    &_checked::before { right: 50%; }}
 
   &__input {flex: 1 1 auto;
     padding: 15px 22px;
@@ -56,7 +56,7 @@
     background: #f9f9f9;
     border-radius: 4px;
 
-    @include mobile { padding: 15px 12px;}}
+    @include mobile { padding: 15px 12px; }}
 
   &__button {flex: 0 0 70px;
 cursor: pointer;

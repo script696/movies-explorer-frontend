@@ -15,6 +15,7 @@ export const UserProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [apiError, setApiError] = useState(apiErrorDefault);
   const [userInfo, setUserInfo] = useState(userInfoDefault);
+  const [isPending, setIsPending] = useState(false);
 
   const checkAuth = async () => {
     const jwt = localStorage.getItem("jwt");
@@ -26,6 +27,7 @@ export const UserProvider = ({ children }) => {
 
   const handleRegistrationSubmit = async (e) => {
     e.preventDefault();
+    setIsPending(true);
     const { name, email, password } = e.target;
 
     try {
@@ -39,9 +41,12 @@ export const UserProvider = ({ children }) => {
       return res;
     } catch (e) {
       setApiError({ isError: true, message: e.message });
+    } finally {
+      setIsPending(false);
     }
   };
   const handleLoginSubmit = async (email, password) => {
+    setIsPending(true);
     try {
       const res = await mainApi.authorize(email.value, password.value);
 
@@ -51,6 +56,8 @@ export const UserProvider = ({ children }) => {
       return res;
     } catch (e) {
       setApiError({ isError: true, message: e.message });
+    } finally {
+      setIsPending(false);
     }
   };
 
@@ -92,6 +99,7 @@ export const UserProvider = ({ children }) => {
         checkAuth,
         setIsLoggedIn,
         apiError,
+        isPending,
       }}
     >
       {children}

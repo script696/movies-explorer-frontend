@@ -2,9 +2,9 @@
 
 .moviesCardList {padding: 80px 0 10px;
 
-  @include tablet { padding: 80px 0 30px;}
+  @include tablet { padding: 80px 0 30px; }
 
-  @include mobile { padding: 50px 0 30px;}
+  @include mobile { padding: 50px 0 30px; }
 
   &__grid {display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -16,7 +16,7 @@
     @include mobile {grid-template-columns: 1fr;
       gap: 12px;}}
 
-  &__notFound { font-size: 16px;}
+  &__notFound { font-size: 16px; }
 
   &_style_not_found {display: flex;
     justify-content: center;

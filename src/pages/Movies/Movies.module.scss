@@ -7,6 +7,6 @@
     box-sizing: border-box;
     margin: auto;
 
-    @include tablet { padding: 0 30px;}
+    @include tablet { padding: 0 30px; }
 
-    @include mobile { padding: 0 10px;}}}
+    @include mobile { padding: 0 10px; }}}
