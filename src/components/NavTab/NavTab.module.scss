@@ -1,18 +1,26 @@
-@import '../../styles/mixins';
+@import "../../styles/mixins";
 
-.navTab {padding: 24px 0;
+.navTab {
+  padding: 24px 0;
   background: #f5f5f5;
   display: flex;
   justify-content: center;
   gap: 40px;
 
-  @include mobile {gap: 24px;
-    padding: 24px 30px;}
+  @include mobile {
+    gap: 24px;
+    padding: 24px 30px;
+  }
 
-  &__link {text-decoration: underline;
+  &__link {
+    text-decoration: underline;
     font-size: 13px;
     line-height: 16px;
     font-weight: 500;
     color: inherit;
 
-    @include mobile { font-size: 11px; }}}
+    @include mobile {
+      font-size: 11px;
+    }
+  }
+}

@@ -1,16 +1,15 @@
-import s from "./Register.module.scss";
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { logo } from "../../assets/images";
-import { Link, useHistory } from "react-router-dom";
-import { useInput } from "../../hooks";
-import getClassname from "../../utils/getClassname";
+import { useInput, useUserContext } from "../../hooks";
+import { ROUTES } from "../../utils/constants/routes";
 import {
   EMAIL_RULES,
   NAME_RULES,
   PASSWORD_RULES,
 } from "../../utils/constants/validatorRules";
-import { useEffect, useState } from "react";
-import { useUserContext } from "../../hooks";
-import { ROUTES } from "../../utils/constants/routes";
+import getClassname from "../../utils/getClassname";
+import s from "./Register.module.scss";
 
 const Register = () => {
   const { push } = useHistory();

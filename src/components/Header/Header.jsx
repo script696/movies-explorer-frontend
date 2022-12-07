@@ -1,9 +1,9 @@
-import s from "./Header.module.scss";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { logo } from "../../assets/images";
 import { ROUTES } from "../../utils/constants/routes";
 import getClassname from "../../utils/getClassname";
-import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import s from "./Header.module.scss";
 const Header = ({ isAuth }) => {
   const location = useLocation();
   const isMainPage = location.pathname === "/";

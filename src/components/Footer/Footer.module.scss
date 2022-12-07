@@ -1,57 +1,87 @@
-@import '../../styles/mixins';
+@import "../../styles/mixins";
 
-.footer {background: #fafafa;
+.footer {
+  background: #fafafa;
   padding: 79px 0 0;
 
-  @include tablet {background: #fff;
-    padding: 18px 0 0;}
+  @include tablet {
+    background: #fff;
+    padding: 18px 0 0;
+  }
 
-  @include mobile { padding: 8px 0 0; }
+  @include mobile {
+    padding: 8px 0 0;
+  }
 
-  &__wrapper {max-width: 1180px;
+  &__wrapper {
+    max-width: 1180px;
     padding: 0 20px;
     box-sizing: border-box;
     margin: auto;
 
-    @include tablet { padding: 0 30px; }
+    @include tablet {
+      padding: 0 30px;
+    }
 
-    @include mobile { padding: 0 10px; }}
+    @include mobile {
+      padding: 0 10px;
+    }
+  }
 
-  &__title {margin: 0 0 20px;
+  &__title {
+    margin: 0 0 20px;
     font-size: 13px;
     line-height: 16px;
     color: #a0a0a0;
     text-align: center;
 
-    @include tablet { margin: 0 0 17px; }
+    @include tablet {
+      margin: 0 0 17px;
+    }
 
-    @include mobile {font-size: 12px;
-      line-height: 15px;}}
+    @include mobile {
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
 
-  &__bottom {padding: 20px 0;
+  &__bottom {
+    padding: 20px 0;
     border-top: 1px solid #e8e8e8;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    @include mobile {padding: 30px 0 10px;
+    @include mobile {
+      padding: 30px 0 10px;
       flex-direction: column-reverse;
-      gap: 30px;}}
+      gap: 30px;
+    }
+  }
 
-  &__col {display: flex;
+  &__col {
+    display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 
-    @include mobile {flex-direction: column;
-      gap: 12px;}}
+    @include mobile {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
 
-  &__link {text-decoration: none;
+  &__link {
+    text-decoration: none;
     color: inherit;
     font-size: 13px;
-    line-height: 16px;}
+    line-height: 16px;
+  }
 
-  &__copyright {margin: 0;
+  &__copyright {
+    margin: 0;
     font-size: 12px;
     line-height: 15px;
-    color: #a0a0a0;}}
+    color: #a0a0a0;
+  }
+}

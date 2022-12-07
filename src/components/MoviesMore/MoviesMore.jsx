@@ -1,6 +1,6 @@
-import s from "./MoviesMore.module.scss";
 import { useMoviesContext } from "../../hooks";
 import getClassname from "../../utils/getClassname";
+import s from "./MoviesMore.module.scss";
 
 const MoviesMore = ({ onMoreMoviesClick }) => {
   const { isMoreButtonDisabled } = useMoviesContext();

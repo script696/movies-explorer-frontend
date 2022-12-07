@@ -1,10 +1,10 @@
-import s from "./Profile.module.scss";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { ROUTES } from "../../utils/constants/routes";
 import { useInput, useMoviesContext, useUserContext } from "../../hooks";
+import { ROUTES } from "../../utils/constants/routes";
 import { EMAIL_RULES, NAME_RULES } from "../../utils/constants/validatorRules";
 import getClassname from "../../utils/getClassname";
+import s from "./Profile.module.scss";
 
 const Profile = () => {
   const { push } = useHistory();
@@ -35,6 +35,7 @@ const Profile = () => {
   };
   const onSubmit = async (e) => {
     await updateUser(e);
+    setIsFormEdit(false);
   };
 
   useEffect(() => {

@@ -1,9 +1,10 @@
-import s from "../Checkbox/Checkbox.module.scss";
+import { useEffect, useState } from "react";
+import { useLocalStorage, useMoviesContext } from "../../hooks";
 import getClassname from "../../utils/getClassname";
-import { useState } from "react";
-import { useLocalStorage } from "../../hooks";
+import s from "../Checkbox/Checkbox.module.scss";
 
 const Checkbox = () => {
+  const { onCheckboxClick } = useMoviesContext();
   const { getItemsFromStorage } = useLocalStorage();
   const { moviesIsShort } = getItemsFromStorage(["moviesIsShort"]);
 
@@ -17,6 +18,10 @@ const Checkbox = () => {
   const onCheckboxChange = () => {
     setIsChecked((prev) => !prev);
   };
+
+  useEffect(() => {
+    onCheckboxClick(isChecked);
+  }, [isChecked]);
 
   return (
     <div className={s.checkbox}>

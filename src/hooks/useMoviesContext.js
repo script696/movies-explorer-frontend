@@ -1,14 +1,14 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import movieApi from "../utils/MovieApi";
 import { checkSubstringInString } from "../utils/checkSubstringInString";
 import {
   IMG_BASE_URL,
   SHORT_FILM_DURATION,
 } from "../utils/constants/moviesSettings";
-import useLocalStorage from "./useLocalStorage";
-import useWindowDimensions from "./useWindowDimensions";
 import { PARAMS } from "../utils/constants/windowResize";
 import mainApi from "../utils/MainApi";
+import movieApi from "../utils/MovieApi";
+import useLocalStorage from "./useLocalStorage";
+import useWindowDimensions from "./useWindowDimensions";
 
 const apiErrorDefault = {
   isError: false,
@@ -27,9 +27,8 @@ export const MoviesProvider = ({ children }) => {
   const [moviesAtPageParams, setMoviesAtPageParams] = useState(PARAMS.desktop);
   const [filters, setFilters] = useState({ searchQuery: "", isShort: false });
   const [isMoreButtonDisabled, setIsMoreButtonDisabled] = useState(false);
+  const [isPending, setIsPending] = useState(false);
   const filteredMovies = useRef(null);
-
-  const isLoading = useRef(false);
 
   /**
    * Функция обрабатывает событие нажатия на кнопку поиска фильмов
@@ -48,6 +47,7 @@ export const MoviesProvider = ({ children }) => {
 
     if (!allMovies) {
       const res = await getAllMovies();
+      console.log(res);
       const movies = moviesMapper(res);
       setAllMovies(movies);
       setFilters({ searchQuery, isShort });
@@ -61,14 +61,14 @@ export const MoviesProvider = ({ children }) => {
    * @returns {Promise<Array>}
    */
   const getAllMovies = async () => {
-    isLoading.current = true;
+    setIsPending(true);
     try {
       const res = await movieApi.getMovies();
       return res;
     } catch (e) {
       setApiError({ isError: true, message: e.message });
     } finally {
-      isLoading.current = false;
+      setIsPending(false);
     }
   };
 
@@ -77,14 +77,14 @@ export const MoviesProvider = ({ children }) => {
    * @returns {Promise<void>}
    */
   const getSavesMovies = async () => {
-    isLoading.current = true;
+    setIsPending(true);
     try {
       const { data } = await mainApi.getSavedMovies();
       setSavedMovies(data);
     } catch (e) {
       setApiError({ isError: true, message: e.message });
     } finally {
-      isLoading.current = false;
+      setIsPending(false);
     }
   };
 
@@ -221,6 +221,10 @@ export const MoviesProvider = ({ children }) => {
     });
   };
 
+  const onCheckboxClick = (value) => {
+    setFilters((prev) => ({ ...prev, isShort: value }));
+  };
+
   useEffect(() => {
     if (moviesArray?.length === filteredMovies.current?.length) {
       setIsMoreButtonDisabled(true);
@@ -248,7 +252,7 @@ export const MoviesProvider = ({ children }) => {
       value={{
         onMoviesSearchSubmit,
         apiError,
-        isLoading: isLoading.current,
+        isPending,
         moviesArray,
         updateMovies,
         onMoreMoviesClick,
@@ -259,6 +263,7 @@ export const MoviesProvider = ({ children }) => {
         isMoreButtonDisabled,
         filterSavedMoviesHandler,
         onLogoutMoviesHandler,
+        onCheckboxClick,
       }}
     >
       {children}

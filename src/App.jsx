@@ -1,10 +1,9 @@
-import { Layout, Modal } from "./components";
-import { Route, Switch, useHistory } from "react-router-dom";
-import { authProtectedRoutes, publicRoutes } from "./utils/navigationRoutes";
-import AuthRouter from "./components/AuthRouter/AuthRouter";
-import { useUserContext } from "./hooks/useUserContext";
 import { useEffect } from "react";
-import { useMoviesContext } from "./hooks/useMoviesContext";
+import { Switch } from "react-router-dom";
+import { Modal } from "./components";
+import AuthRouter from "./components/AuthRouter/AuthRouter";
+import { useMoviesContext, useUserContext } from "./hooks";
+import { authProtectedRoutes, publicRoutes } from "./utils/navigationRoutes";
 
 const App = () => {
   const { isLogin } = useUserContext();

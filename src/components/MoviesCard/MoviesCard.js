@@ -1,7 +1,7 @@
-import s from "./MoviesCard.module.scss";
-import getClassname from "../../utils/getClassname";
-import { useMoviesContext } from "../../hooks/useMoviesContext";
 import { useState } from "react";
+import { useMoviesContext } from "../../hooks/useMoviesContext";
+import getClassname from "../../utils/getClassname";
+import s from "./MoviesCard.module.scss";
 
 const MoviesCard = ({ movie, reversed }) => {
   const { saveMovieHandler, savedMovies, deleteMovieHandler } =

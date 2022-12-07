@@ -1,10 +1,10 @@
-import s from "./SavedMovies.module.scss";
+import { useEffect } from "react";
 import { MoviesCardList, Preloader, SearchForm } from "../../components";
-import { useEffect, useState } from "react";
 import { useMoviesContext } from "../../hooks/useMoviesContext";
+import s from "./SavedMovies.module.scss";
 
 const SavedMovies = () => {
-  const { filterSavedMoviesHandler, getSavesMovies, savedMovies, isLoading } =
+  const { filterSavedMoviesHandler, getSavesMovies, savedMovies, isPending } =
     useMoviesContext();
 
   const onSubmit = (e) => {
@@ -19,7 +19,7 @@ const SavedMovies = () => {
     <section className={s.savedMovies}>
       <div className={s.savedMovies__wrapper}>
         <SearchForm onSearchSubmit={onSubmit} />
-        {isLoading ? (
+        {isPending ? (
           <Preloader />
         ) : (
           <MoviesCardList movies={savedMovies} reversed />

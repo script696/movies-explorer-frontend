@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BREAKPOINTS, PARAMS } from "../utils/constants/windowResize";
 
 const getWindowDimensions = () => {

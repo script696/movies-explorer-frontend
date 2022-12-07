@@ -1,17 +1,18 @@
-import s from "./Movies.module.scss";
+import { useEffect } from "react";
 import { MoviesCardList, Preloader, SearchForm } from "../../components";
 import MoviesMore from "../../components/MoviesMore/MoviesMore";
-import { useEffect, useRef, useState } from "react";
 import { useMoviesContext } from "../../hooks/useMoviesContext";
+import s from "./Movies.module.scss";
 
 const Movies = () => {
   const {
     onMoviesSearchSubmit,
-    isLoading,
+    isPending,
     moviesArray,
     updateMovies,
     onMoreMoviesClick,
   } = useMoviesContext();
+
   const onSubmit = (e) => {
     onMoviesSearchSubmit(e);
   };
@@ -24,7 +25,7 @@ const Movies = () => {
     <section className={s.movies}>
       <div className={s.movies__wrapper}>
         <SearchForm onSearchSubmit={onSubmit} />
-        {isLoading ? <Preloader /> : <MoviesCardList movies={moviesArray} />}
+        {isPending ? <Preloader /> : <MoviesCardList movies={moviesArray} />}
         <MoviesMore onMoreMoviesClick={onMoreMoviesClick} />
       </div>
     </section>

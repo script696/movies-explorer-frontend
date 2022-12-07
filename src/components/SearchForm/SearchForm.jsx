@@ -1,9 +1,7 @@
-import s from "./SearchForm.module.scss";
-import { useEffect, useState } from "react";
-import getClassname from "../../utils/getClassname";
-import { Checkbox } from "../index";
-import { useMoviesContext } from "../../hooks/useMoviesContext";
+import { useState } from "react";
 import { useLocalStorage } from "../../hooks";
+import { Checkbox } from "../index";
+import s from "./SearchForm.module.scss";
 
 const SearchForm = ({ onSearchSubmit }) => {
   const { getItemsFromStorage } = useLocalStorage();

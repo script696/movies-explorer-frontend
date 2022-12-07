@@ -1,5 +1,5 @@
-import s from "./PageNotFound.module.scss";
 import { useHistory } from "react-router-dom";
+import s from "./PageNotFound.module.scss";
 
 const PageNotFound = () => {
   const { goBack } = useHistory();

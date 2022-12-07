@@ -1,7 +1,6 @@
-import s from "./AboutMe.module.scss";
-import { SectionTitle } from "../index";
 import { avatar } from "../../assets/images";
-import Portfolio from "../Portfolio/Portfolio";
+import { SectionTitle } from "../index";
+import s from "./AboutMe.module.scss";
 
 const AboutMe = () => {
   return (

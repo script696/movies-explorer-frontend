@@ -1,5 +1,5 @@
-import s from "./Layout.module.scss";
 import { Footer, Header } from "../index";
+import s from "./Layout.module.scss";
 
 const Layout = ({ children, isAuth }) => (
   <section className={s.layout}>

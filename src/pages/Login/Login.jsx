@@ -1,14 +1,14 @@
-import s from "./Login.module.scss";
-import { logo } from "../../assets/images";
-import { useHistory } from "react-router-dom";
-import { useUserContext, useInput } from "../../hooks";
 import { useEffect } from "react";
-import getClassname from "../../utils/getClassname";
+import { useHistory } from "react-router-dom";
+import { logo } from "../../assets/images";
+import { useInput, useUserContext } from "../../hooks";
+import { ROUTES } from "../../utils/constants/routes";
 import {
   EMAIL_RULES,
   PASSWORD_RULES,
 } from "../../utils/constants/validatorRules";
-import { ROUTES } from "../../utils/constants/routes";
+import getClassname from "../../utils/getClassname";
+import s from "./Login.module.scss";
 
 const Login = () => {
   const { push } = useHistory();

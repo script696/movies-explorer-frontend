@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import mainApi from "../utils/MainApi";
-import { useMoviesContext } from "./useMoviesContext";
 
 const apiErrorDefault = {
   isError: false,
@@ -16,6 +15,7 @@ export const UserProvider = ({ children }) => {
   const [apiError, setApiError] = useState(apiErrorDefault);
   const [userInfo, setUserInfo] = useState(userInfoDefault);
   const [isPending, setIsPending] = useState(false);
+  const [isUpdateSuccess, setIsUpdateSuccess] = useState(null);
 
   const checkAuth = async () => {
     const jwt = localStorage.getItem("jwt");
@@ -77,6 +77,7 @@ export const UserProvider = ({ children }) => {
     try {
       const res = await mainApi.updateUserInfo(name.value, email.value);
       setUserInfo({ name: res.data.name, email: res.data.email });
+      setIsUpdateSuccess(true);
     } catch (e) {
       setApiError({ isError: true, message: e.message });
     }
@@ -100,6 +101,8 @@ export const UserProvider = ({ children }) => {
         setIsLoggedIn,
         apiError,
         isPending,
+        isUpdateSuccess,
+        setIsUpdateSuccess,
       }}
     >
       {children}

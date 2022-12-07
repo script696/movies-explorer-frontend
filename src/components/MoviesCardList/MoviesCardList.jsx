@@ -1,6 +1,6 @@
-import s from "./MoviesCardList.module.scss";
-import { MoviesCard } from "../index";
 import getClassname from "../../utils/getClassname";
+import { MoviesCard } from "../index";
+import s from "./MoviesCardList.module.scss";
 
 const MoviesCardList = ({ movies, reversed }) => {
   const isMoviesFound = movies?.length;

@@ -1,5 +1,4 @@
 const BASE_URL = "http://localhost:5000";
-const test = process.env.REACT_APP_BACKEND_URL;
 
 class Api {
   constructor({ id, headers }) {

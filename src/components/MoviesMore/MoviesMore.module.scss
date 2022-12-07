@@ -1,14 +1,20 @@
-@import '../../styles/mixins';
+@import "../../styles/mixins";
 
-.moviesMore {display: grid;
+.moviesMore {
+  display: grid;
   place-items: center;
   padding: 50px 0 80px;
 
-  @include tablet { padding: 50px 0 139px; }
+  @include tablet {
+    padding: 50px 0 139px;
+  }
 
-  @include mobile { padding: 50px 0 150px; }
+  @include mobile {
+    padding: 50px 0 150px;
+  }
 
-  &__btn {cursor: pointer;
+  &__btn {
+    cursor: pointer;
     width: 104.3%;
     height: 36px;
     color: inherit;
@@ -20,4 +26,8 @@
     font-size: 12px;
     line-height: 15px;
 
-    &_disabled { display: none;}}}
+    &_disabled {
+      display: none;
+    }
+  }
+}
