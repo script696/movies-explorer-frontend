@@ -1,4 +1,4 @@
-const BASE_URL = "http://api.script-movie.nomoredomains.icu";
+const BASE_URL = "https://api.script-movie.nomoredomains.icu";
 
 class Api {
   constructor({ id, headers }) {
