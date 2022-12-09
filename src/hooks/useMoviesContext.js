@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { checkSubstringInString } from "../utils/checkSubstringInString";
+import { toHoursAndMinutes } from "../utils/constants/getHourAndMinute";
 import {
   IMG_BASE_URL,
   SHORT_FILM_DURATION,
@@ -47,10 +48,12 @@ export const MoviesProvider = ({ children }) => {
 
     if (!allMovies) {
       const res = await getAllMovies();
-      console.log(res);
       const movies = moviesMapper(res);
       setAllMovies(movies);
       setFilters({ searchQuery, isShort });
+      setItemsToLocaleStorage({
+        allMovies: movies,
+      });
       return;
     }
     setFilters({ searchQuery, isShort });
@@ -94,20 +97,27 @@ export const MoviesProvider = ({ children }) => {
    * @returns {Promise<void>}
    */
   const saveMovieHandler = async (movieData) => {
+    const { mappedDuration: _, ...dataTORequest } = movieData;
     try {
-      await mainApi.createMovie(movieData);
+      await mainApi.createMovie(dataTORequest);
     } catch (e) {
+      console.log(e);
       setApiError({ isError: true, message: e.message });
     }
   };
 
   /**
    * Функция удаляет выбранный пользователем фильм
-   * @param {number} id - объект с данными фильма
+   * @param {number} clickedMovieId - id фильма
    * @returns {Promise<void>}
    */
-  const deleteMovieHandler = async (id) => {
+  const deleteMovieHandler = async (clickedMovieId) => {
     try {
+      const { data: savedMovies } = await mainApi.getSavedMovies();
+      const { _id: id } = savedMovies.find(
+        (movie) => movie.movieId === clickedMovieId
+      );
+
       const { data } = await mainApi.deleteMovie(id);
 
       const filteredSavedMovies = savedMovies.filter(
@@ -132,6 +142,7 @@ export const MoviesProvider = ({ children }) => {
         nameRU: movie.nameRU,
         nameEN: movie.nameEN,
         duration: movie.duration,
+        mappedDuration: toHoursAndMinutes(movie.duration),
         country: movie.country,
         director: movie.director,
         year: movie.year,
@@ -149,13 +160,13 @@ export const MoviesProvider = ({ children }) => {
     filteredMovies.current = null;
   };
 
-  const updateMovies = () => {
-    const { moviesArray, currentMoviesLength } = getItemsFromStorage([
-      "moviesArray",
-      "currentMoviesLength",
-    ]);
+  const updateMovies = async () => {
+    const { moviesArray, currentMoviesLength, allMovies } = getItemsFromStorage(
+      ["moviesArray", "moviesArray", "currentMoviesLength", "allMovies"]
+    );
     if (!moviesArray) return;
-
+    setAllMovies(allMovies);
+    await getSavesMovies();
     filteredMovies.current = moviesArray;
     const firstMoviesChunk = getChunk(moviesArray, currentMoviesLength);
     setMoviesArray(firstMoviesChunk);

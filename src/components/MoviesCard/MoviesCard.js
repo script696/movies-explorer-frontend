@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { useMoviesContext } from "../../hooks/useMoviesContext";
+import { useMoviesContext } from "../../hooks";
 import getClassname from "../../utils/getClassname";
 import s from "./MoviesCard.module.scss";
 
 const MoviesCard = ({ movie, reversed }) => {
   const { saveMovieHandler, savedMovies, deleteMovieHandler } =
     useMoviesContext();
+  const { nameRU, mappedDuration: duration, image, movieId } = movie;
 
-  const { nameRU, duration, image } = movie;
   const isSaved = savedMovies?.some(
     (savedMovie) => savedMovie.movieId === movie.movieId
   );
@@ -19,11 +19,10 @@ const MoviesCard = ({ movie, reversed }) => {
     reversed && s.moviesCard__btn_unSaved,
   ];
 
-  const isBtnDisabled = isMovieSaved && !reversed;
-
   const onButtonClick = () => {
     if (isMovieSaved) {
-      deleteMovieHandler(movie._id);
+      deleteMovieHandler(movieId);
+      setIsMovieSaved(false);
     } else {
       saveMovieHandler(movie);
       setIsMovieSaved(true);
@@ -34,7 +33,7 @@ const MoviesCard = ({ movie, reversed }) => {
     <article className={s.moviesCard}>
       <div className={s.moviesCard__top}>
         <p className={s.moviesCard__title}>{nameRU}</p>
-        <p className={s.moviesCard__duration}>{`${duration} минут`}</p>
+        <p className={s.moviesCard__duration}>{duration}</p>
       </div>
       <img className={s.moviesCard__logo} src={image} alt={nameRU} />
       <div className={s.moviesCard__bottom}>
@@ -42,7 +41,7 @@ const MoviesCard = ({ movie, reversed }) => {
           onClick={onButtonClick}
           className={getClassname(btnStyle)}
           type="button"
-          disabled={isBtnDisabled}
+          // disabled={isBtnDisabled}
         >
           {!isMovieSaved && !reversed && <span>Сохранить</span>}
         </button>

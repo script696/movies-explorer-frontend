@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "dev": "cross-env PORT=4000 react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build --no-eslintrc",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "stylelint **/*.{css,scss} --fix",
@@ -42,11 +42,6 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "eslint": "^8.23.1",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-sort-keys-fix": "1.1.2",
-    "eslint-plugin-unused-imports": "2.0.0",
     "prettier": "^2.6.2",
     "prettier-plugin-organize-imports": "^3.2.1",
     "sass": "^1.54.4",
