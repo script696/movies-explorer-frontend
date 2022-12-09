@@ -1,15 +1,20 @@
-import s from "./Login.module.scss";
-import { logo } from "../../assets/images";
-import { Link } from "react-router-dom";
-import { useInput } from "../../hooks";
 import { useEffect } from "react";
-import getClassname from "../../utils/getClassname";
+import { useHistory } from "react-router-dom";
+import { logo } from "../../assets/images";
+import { useInput, useUserContext } from "../../hooks";
+import { ROUTES } from "../../utils/constants/routes";
 import {
   EMAIL_RULES,
   PASSWORD_RULES,
 } from "../../utils/constants/validatorRules";
+import getClassname from "../../utils/getClassname";
+import s from "./Login.module.scss";
 
 const Login = () => {
+  const { push } = useHistory();
+  const { handleLoginSubmit, apiError, isLoggedIn, isPending } =
+    useUserContext();
+
   const email = useInput({ initialVal: "", rules: EMAIL_RULES });
   const password = useInput({ initialVal: "", rules: PASSWORD_RULES });
 
@@ -36,13 +41,21 @@ const Login = () => {
   const emailHasErrAndDirty = !email.isInputValid && email.isDirty;
   const passwordHasErrAndDirty = !password.isInputValid && password.isDirty;
 
+  const isFormValid = email.isInputValid && password.isInputValid;
+  const isSubmitBtnDisabled = !isFormValid || apiError.isError || isPending;
+
+  const sbmtButtonStyles = [
+    s.login__btn,
+    isSubmitBtnDisabled && s.login__btn_disable,
+  ];
+
   const fieldInputsStyles = {
     emailInputStyles: [
       s.login__fieldInput,
       emailHasErrAndDirty && s.login__fieldInput_withErr,
     ],
     passwordInputStyles: [
-      s.login__errorMsg,
+      s.login__fieldInput,
       passwordHasErrAndDirty && s.login__fieldInput_withErr,
     ],
   };
@@ -66,12 +79,29 @@ const Login = () => {
       passwordHasErrAndDirty && s.login__errorMsg_active,
     ],
   };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const { email, password } = e.target;
+
+    const res = await handleLoginSubmit(email, password);
+
+    if (res) push(ROUTES.MOVIES);
+  };
+
+  const onRegistrationRedirect = () => {
+    push(ROUTES.SIGNUP);
+  };
+
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    push(ROUTES.MAIN);
+  }, [isLoggedIn]);
 
   return (
     <section className={s.login}>
       <img src={logo} alt="логотип" className={s.login__logo} />
       <h2 className={s.login__title}>Рады видеть!</h2>
-      <form className={s.login__form}>
+      <form className={s.login__form} onSubmit={onSubmit}>
         <div className={s.login__fields}>
           {formFields.map(
             ({ id, onBlur, onChange, value, fieldsTitle, type }) => (
@@ -81,6 +111,7 @@ const Login = () => {
               >
                 <span className={s.login__fieldTitle}>{fieldsTitle}</span>
                 <input
+                  id={id}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -99,12 +130,24 @@ const Login = () => {
           )}
         </div>
         <div className={s.login__bottom}>
-          <button className={s.login__btn}>Войти</button>
+          {apiError.isError && (
+            <span className={s.login__errText}>{apiError.message}</span>
+          )}
+          <button
+            className={getClassname(sbmtButtonStyles)}
+            disabled={isSubmitBtnDisabled}
+          >
+            Войти
+          </button>
           <div className={s.login__row}>
             <span className={s.login__regtext}>Еще не зарегестрированы?</span>
-            <Link className={s.login__link} to="/">
+            <button
+              type="button"
+              className={s.login__redirect}
+              onClick={onRegistrationRedirect}
+            >
               Регистрация
-            </Link>
+            </button>
           </div>
         </div>
       </form>

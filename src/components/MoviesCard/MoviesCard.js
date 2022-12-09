@@ -1,33 +1,49 @@
-import s from "./MoviesCard.module.scss";
+import { useState } from "react";
+import { useMoviesContext } from "../../hooks";
 import getClassname from "../../utils/getClassname";
+import s from "./MoviesCard.module.scss";
 
-const MoviesCard = ({
-  movie: { title, duration, img, isSaved, onSave },
-  reversed,
-}) => {
+const MoviesCard = ({ movie, reversed }) => {
+  const { saveMovieHandler, savedMovies, deleteMovieHandler } =
+    useMoviesContext();
+  const { nameRU, mappedDuration: duration, image, movieId } = movie;
+
+  const isSaved = savedMovies?.some(
+    (savedMovie) => savedMovie.movieId === movie.movieId
+  );
+  const [isMovieSaved, setIsMovieSaved] = useState(isSaved);
+
   const btnStyle = [
     s.moviesCard__btn,
-    isSaved && s.moviesCard__btn_saved,
+    isMovieSaved && s.moviesCard__btn_saved,
     reversed && s.moviesCard__btn_unSaved,
   ];
 
-  const isBtnDisabled = isSaved && !reversed;
+  const onButtonClick = () => {
+    if (isMovieSaved) {
+      deleteMovieHandler(movieId);
+      setIsMovieSaved(false);
+    } else {
+      saveMovieHandler(movie);
+      setIsMovieSaved(true);
+    }
+  };
 
   return (
     <article className={s.moviesCard}>
       <div className={s.moviesCard__top}>
-        <p className={s.moviesCard__title}>{title}</p>
-        <p className={s.moviesCard__duration}>{`${duration} минут`}</p>
+        <p className={s.moviesCard__title}>{nameRU}</p>
+        <p className={s.moviesCard__duration}>{duration}</p>
       </div>
-      <img className={s.moviesCard__logo} src={img} alt={title} />
+      <img className={s.moviesCard__logo} src={image} alt={nameRU} />
       <div className={s.moviesCard__bottom}>
         <button
-          onClick={() => console.log("click")}
+          onClick={onButtonClick}
           className={getClassname(btnStyle)}
           type="button"
-          disabled={isBtnDisabled}
+          // disabled={isBtnDisabled}
         >
-          {!isSaved && !reversed && <span>Сохранить</span>}
+          {!isMovieSaved && !reversed && <span>Сохранить</span>}
         </button>
       </div>
     </article>

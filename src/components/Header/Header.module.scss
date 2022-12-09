@@ -1,11 +1,6 @@
-@import '../../styles/mixins';
-
-
-
+@import "../../styles/mixins";
 
 .header {
-
-
   position: absolute;
   top: 0;
   left: 50%;
@@ -22,84 +17,44 @@
   z-index: 100;
 
   @include tablet {
-
-
     padding: 0 30px;
-
-
-
   }
-
-
 
   @include mobile {
-
-
     padding: 0 14px;
-
-
   }
 
-
-
   &__firstCol {
-
-
-display: flex;
+    display: flex;
     gap: 20px;
 
     @include tablet {
-
-
-flex-direction: column;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 28px;
-
-
     }
-
-
   }
-
-
-
 
   &__logo {
-
-
     width: 38px;
     height: 38px;
-
-
   }
 
-
-
   &__navWrapper {
-
-
     display: flex;
     align-items: center;
     gap: 50px;
-
-
   }
 
-
-
   &__authLinksWrapper {
-
-
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 50px;
 
     @include tablet {
-
-
-position: fixed;
+      position: fixed;
       top: 0;
       right: 0;
       width: 67vw;
@@ -113,32 +68,18 @@ position: fixed;
       padding: 144px 0 48px;
       box-sizing: border-box;
       z-index: 50;
-
-
     }
-
-
 
     @include mobile {
-
-
       width: 100vw;
-
-
     }
 
-
-
-      &_active {
-
-
+    &_active {
       opacity: 1;
       visibility: visible;
 
       &::before {
-
-
-        content: '';
+        content: "";
         position: fixed;
         top: 0;
         right: 67vw;
@@ -148,47 +89,21 @@ position: fixed;
         opacity: 0.3;
 
         @include mobile {
-
-
           display: none;
-
-
         }
-
-
       }
-
-
-
     }
-
-
-
   }
-
-
-
 }
 
-
-
-
 .profile__link {
-
-
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 17px;
-
-
 }
 
-
-
 .menuBurger {
-
-
   display: none;
   position: absolute;
   right: 40px;
@@ -203,29 +118,14 @@ position: fixed;
   cursor: pointer;
 
   @include tablet {
-
-
-
     display: block;
-
-
   }
-
-
 
   @include mobile {
-
-
-right: 20px;
-
-
+    right: 20px;
   }
 
-
-
   div {
-
-
     position: absolute;
     top: 50%;
     left: 0;
@@ -234,19 +134,11 @@ right: 20px;
     background: #000;
     transform: translateY(-50%);
     transition: 0.3s;
-
-
-
   }
 
-
-
   &::before,
-
- &::after {
-
-
-    content: '';
+  &::after {
+    content: "";
     position: absolute;
     width: 100%;
     height: 2.5px;
@@ -254,179 +146,90 @@ right: 20px;
     top: 0;
     left: 0;
     transition: 0.3s;
-
-
-
   }
 
-
-
   &::after {
-
-
     top: auto;
     bottom: 0;
     left: 0;
-
-
   }
-
 
   &_active div {
-
-
     width: 0;
-
-
   }
-
-
-
-
 
   &_active div {
-
-
     width: 0;
-
-
   }
-
-
 
   &_active::before {
-
-
     top: 50%;
     left: 0;
     transform: translateY(-50%) rotate(-45deg);
-
-
   }
 
-
-
   &_active::after {
-
-
     top: 50%;
     left: 0;
     transform: translateY(-50%) rotate(45deg);
-
-
-
   }
-
-
 }
 
-
-
-
 .menuLink {
-
-
   display: flex;
   gap: 17px;
   align-items: center;
 
   &__link {
-
-
     color: #000;
     text-decoration: none;
     font-size: 12px;
     line-height: 16px;
-  &_color_white {
-    color: #fff;
-  }
-    @include tablet {
 
-
-      font-size: 18px;
-      line-height: 22px;
-
-
+    &_color_white {
+      color: #fff;
     }
 
+    @include tablet {
+      font-size: 18px;
+      line-height: 22px;
+    }
 
-
-      &_visible_none {
-
-
-        display: none;
+    &_visible_none {
+      display: none;
 
       @include tablet {
-
-
-          display: block;
-
-
-        }
-
-
+        display: block;
       }
-
-
+    }
 
     &_active {
-
-
       font-weight: 500;
 
       @include tablet {
-
-
         padding-bottom: 4px;
         border-bottom: 2px solid #000;
-
-
       }
-
-
     }
-
-
-
 
     &_color_white {
-
-
       color: #fff;
-
-
     }
 
-
-
     &_style_signin {
-
-
       color: #000;
       background: #2be080;
       padding: 8px 20px;
       border-radius: 3px;
       margin-left: 30px;
-
-
     }
-
-
-
   }
-
-
 
   &__profile {
-
-
     width: 26px;
     height: 26px;
-    background: #f9f9f9 url('../../assets/images/profile.svg') center / 11.5px 14px no-repeat;
+    background: #f9f9f9 url("../../assets/images/profile.svg") center / 11.5px
+      14px no-repeat;
     border-radius: 4px;
-
-
   }
-
-
 }

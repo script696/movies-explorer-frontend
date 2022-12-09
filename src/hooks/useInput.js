@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useValidation from "./useValidation";
 
 const useInput = ({ initialVal, rules }) => {
@@ -9,10 +9,21 @@ const useInput = ({ initialVal, rules }) => {
   const onChange = (e) => {
     setVal(e.target.value);
   };
-  const onBlur = (e) => {
+  const onBlur = () => {
     setIsDirty(true);
   };
-  return { val, isDirty, onChange, onBlur, isInputValid };
+
+  const setInitialValue = (value) => {
+    setVal(value);
+  };
+  return {
+    val,
+    isDirty,
+    onChange,
+    onBlur,
+    isInputValid,
+    setInitialValue,
+  };
 };
 
 export default useInput;

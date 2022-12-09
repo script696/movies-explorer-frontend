@@ -1,23 +1,32 @@
-import s from "./Movies.module.scss";
+import { useEffect } from "react";
 import { MoviesCardList, Preloader, SearchForm } from "../../components";
-import { mokedData } from "./mokedData";
 import MoviesMore from "../../components/MoviesMore/MoviesMore";
-import { useEffect, useState } from "react";
+import { useMoviesContext } from "../../hooks/useMoviesContext";
+import s from "./Movies.module.scss";
 
 const Movies = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const {
+    onMoviesSearchSubmit,
+    isPending,
+    moviesArray,
+    updateMovies,
+    onMoreMoviesClick,
+  } = useMoviesContext();
+
+  const onSubmit = (e) => {
+    onMoviesSearchSubmit(e);
+  };
 
   useEffect(() => {
-    const timeOutId = setTimeout(() => setIsLoading(false), 1000 * 3);
-    return () => clearTimeout(timeOutId);
+    updateMovies();
   }, []);
 
   return (
     <section className={s.movies}>
       <div className={s.movies__wrapper}>
-        <SearchForm />
-        {isLoading ? <Preloader /> : <MoviesCardList movies={mokedData} />}
-        <MoviesMore />
+        <SearchForm onSearchSubmit={onSubmit} />
+        {isPending ? <Preloader /> : <MoviesCardList movies={moviesArray} />}
+        <MoviesMore onMoreMoviesClick={onMoreMoviesClick} />
       </div>
     </section>
   );

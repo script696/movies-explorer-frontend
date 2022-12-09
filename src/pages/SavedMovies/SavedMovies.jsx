@@ -1,25 +1,28 @@
-import s from "./SavedMovies.module.scss";
+import { useEffect } from "react";
 import { MoviesCardList, Preloader, SearchForm } from "../../components";
-import { mokedData } from "../Movies/mokedData";
-import { useEffect, useState } from "react";
+import { useMoviesContext } from "../../hooks/useMoviesContext";
+import s from "./SavedMovies.module.scss";
 
 const SavedMovies = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const { filterSavedMoviesHandler, getSavesMovies, savedMovies, isPending } =
+    useMoviesContext();
 
-  const filteredMovies = mokedData.filter((movie) => movie.isSaved);
+  const onSubmit = (e) => {
+    filterSavedMoviesHandler(e);
+  };
+
   useEffect(() => {
-    const timeOutId = setTimeout(() => setIsLoading(false), 1000 * 3);
-    return () => clearTimeout(timeOutId);
+    getSavesMovies();
   }, []);
 
   return (
     <section className={s.savedMovies}>
       <div className={s.savedMovies__wrapper}>
-        <SearchForm />
-        {isLoading ? (
+        <SearchForm onSearchSubmit={onSubmit} />
+        {isPending ? (
           <Preloader />
         ) : (
-          <MoviesCardList movies={filteredMovies} reversed />
+          <MoviesCardList movies={savedMovies} reversed />
         )}
       </div>
     </section>

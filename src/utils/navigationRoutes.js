@@ -1,14 +1,14 @@
+import { Layout } from "../components";
 import {
+  Login,
   Main,
   Movies,
-  SavedMovies,
+  PageNotFound,
   Profile,
   Register,
-  Login,
-  PageNotFound,
+  SavedMovies,
 } from "../pages";
 import { ROUTES } from "./constants/routes";
-import { Layout } from "../components";
 
 const PUBLIC_ROUTES = {
   MAIN: {

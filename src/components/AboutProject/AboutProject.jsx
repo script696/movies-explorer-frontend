@@ -1,5 +1,5 @@
-import s from "./AboutProject.module.scss";
 import { SectionTitle } from "../index";
+import s from "./AboutProject.module.scss";
 
 const AboutProject = () => {
   return (

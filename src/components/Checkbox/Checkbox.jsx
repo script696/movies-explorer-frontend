@@ -1,14 +1,27 @@
-import s from "../Checkbox/Checkbox.module.scss";
+import { useEffect, useState } from "react";
+import { useLocalStorage, useMoviesContext } from "../../hooks";
 import getClassname from "../../utils/getClassname";
-import { useState } from "react";
+import s from "../Checkbox/Checkbox.module.scss";
 
 const Checkbox = () => {
-  const [isChecked, setIsChecked] = useState(false);
+  const { onCheckboxClick } = useMoviesContext();
+  const { getItemsFromStorage } = useLocalStorage();
+  const { moviesIsShort } = getItemsFromStorage(["moviesIsShort"]);
+
+  const [isChecked, setIsChecked] = useState(moviesIsShort || false);
 
   const checkboxLabelStyle = [
     s.checkbox__label,
     isChecked || s.checkbox__label_checked,
   ];
+
+  const onCheckboxChange = () => {
+    setIsChecked((prev) => !prev);
+  };
+
+  useEffect(() => {
+    onCheckboxClick(isChecked);
+  }, [isChecked]);
 
   return (
     <div className={s.checkbox}>
@@ -16,7 +29,9 @@ const Checkbox = () => {
         className={s.checkbox__input}
         type="checkbox"
         id="checkbox"
-        onChange={() => setIsChecked((prev) => !prev)}
+        name="isChecked"
+        onChange={onCheckboxChange}
+        checked={isChecked}
       />
       <label className={getClassname(checkboxLabelStyle)} htmlFor="checkbox" />
     </div>

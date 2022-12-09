@@ -1,16 +1,21 @@
-import s from "./Register.module.scss";
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { logo } from "../../assets/images";
-import { Link } from "react-router-dom";
-import { useInput } from "../../hooks";
-import getClassname from "../../utils/getClassname";
+import { useInput, useUserContext } from "../../hooks";
+import { ROUTES } from "../../utils/constants/routes";
 import {
   EMAIL_RULES,
   NAME_RULES,
   PASSWORD_RULES,
 } from "../../utils/constants/validatorRules";
-import { useEffect } from "react";
+import getClassname from "../../utils/getClassname";
+import s from "./Register.module.scss";
 
 const Register = () => {
+  const { push } = useHistory();
+  const { handleRegistrationSubmit, apiError, isLoggedIn, isPending } =
+    useUserContext();
+
   const email = useInput({ initialVal: "", rules: EMAIL_RULES });
   const password = useInput({ initialVal: "", rules: PASSWORD_RULES });
   const name = useInput({ initialVal: "", rules: NAME_RULES });
@@ -44,6 +49,15 @@ const Register = () => {
   const emailHasErrAndDirty = !email.isInputValid && email.isDirty;
   const passwordHasErrAndDirty = !password.isInputValid && password.isDirty;
   const nameHasErrAndDirty = !name.isInputValid && name.isDirty;
+
+  const isFormValid =
+    email.isInputValid && password.isInputValid && name.isInputValid;
+  const isSubmitBtnDisabled = !isFormValid || apiError.isError || isPending;
+
+  const sbmtButtonStyles = [
+    s.register__btn,
+    isSubmitBtnDisabled && s.register__btn_disable,
+  ];
 
   const fieldInputsStyles = {
     emailInputStyles: [
@@ -87,14 +101,27 @@ const Register = () => {
       nameHasErrAndDirty && s.register__errorMsg_active,
     ],
   };
+
+  const onSubmit = async (e) => {
+    const res = await handleRegistrationSubmit(e);
+
+    if (res) push(ROUTES.MOVIES);
+  };
+
+  const onLoginRedirect = () => {
+    push(ROUTES.SIGNIN);
+  };
+
   useEffect(() => {
-    console.log(name.isInputValid + "validation");
-  }, [name.isInputValid]);
+    if (!isLoggedIn) return;
+    push(ROUTES.MAIN);
+  }, [isLoggedIn]);
+
   return (
     <section className={s.register}>
       <img src={logo} alt="логотип" className={s.register__logo} />
       <h2 className={s.register__title}>Добро пожаловать!</h2>
-      <form className={s.register__form}>
+      <form className={s.register__form} onSubmit={onSubmit}>
         <div className={s.register__fields}>
           {formFields.map(
             ({ id, value, onChange, onBlur, fieldsTitle, type }) => (
@@ -104,6 +131,7 @@ const Register = () => {
               >
                 <span className={s.register__fieldTitle}>{fieldsTitle}</span>
                 <input
+                  id={id}
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -122,12 +150,24 @@ const Register = () => {
           )}
         </div>
         <div className={s.register__bottom}>
-          <button className={s.register__btn}>Зарегестрироваться</button>
+          {apiError.isError && (
+            <span className={s.register__errText}>{apiError.message}</span>
+          )}
+          <button
+            className={getClassname(sbmtButtonStyles)}
+            disabled={isSubmitBtnDisabled}
+          >
+            Зарегестрироваться
+          </button>
           <div className={s.register__row}>
             <span className={s.register__regtext}>Уже зарегестрированы?</span>
-            <Link className={s.register__link} to="/">
+            <button
+              type="button"
+              className={s.register__link}
+              onClick={onLoginRedirect}
+            >
               Войти
-            </Link>
+            </button>
           </div>
         </div>
       </form>

@@ -1,5 +1,5 @@
-import s from "./Promo.module.scss";
 import { introGrid } from "../../assets/images";
+import s from "./Promo.module.scss";
 
 const Promo = () => {
   return (

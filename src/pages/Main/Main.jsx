@@ -1,12 +1,12 @@
-import s from "./Main.module.scss";
 import {
-  Promo,
-  NavTab,
-  Techs,
-  AboutProject,
-  Portfolio,
   AboutMe,
+  AboutProject,
+  NavTab,
+  Portfolio,
+  Promo,
+  Techs,
 } from "../../components";
+import s from "./Main.module.scss";
 
 const Main = () => {
   return (

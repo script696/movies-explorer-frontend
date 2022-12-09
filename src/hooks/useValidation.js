@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-const EMAIL_RE =
-  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+import { useEffect, useState } from "react";
+
+const EMAIL_RE = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
 const useValidation = ({ val, rules }) => {
   const ERRORS_TEXT = {
@@ -18,7 +18,7 @@ const useValidation = ({ val, rules }) => {
   const [isInputValid, setIsInputValid] = useState(false);
 
   useEffect(() => {
-    for (let key in rules) {
+    for (const key in rules) {
       switch (key) {
         case "isEmail":
           if (!EMAIL_RE.test(val)) {
@@ -40,9 +40,7 @@ const useValidation = ({ val, rules }) => {
           break;
         case "minLength":
           if (val.length < rules[key]) {
-            console.log("here");
             setIsMinLenErr(true);
-            console.log("here");
             setErrorText(ERRORS_TEXT.minLength);
           } else {
             setIsMinLenErr(false);
@@ -64,13 +62,10 @@ const useValidation = ({ val, rules }) => {
 
   useEffect(() => {
     if (isEmpty || isEmail || isMinLenErr || isMaxLenErr) {
-      console.log(isMinLenErr + " " + "err");
       setIsInputValid(false);
     } else setIsInputValid(true);
   }, [isEmpty, isEmail, isMinLenErr, isMaxLenErr]);
-  useEffect(() => {
-    console.log(isMinLenErr + "effect");
-  }, [isMinLenErr]);
+  useEffect(() => {}, [isMinLenErr]);
   return { isInputValid };
 };
 

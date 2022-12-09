@@ -1,24 +1,64 @@
-import s from "./Profile.module.scss";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useInput, useMoviesContext, useUserContext } from "../../hooks";
+import { ROUTES } from "../../utils/constants/routes";
+import { EMAIL_RULES, NAME_RULES } from "../../utils/constants/validatorRules";
+import getClassname from "../../utils/getClassname";
+import s from "./Profile.module.scss";
 
 const Profile = () => {
-  const name = "Виталий";
-  const mail = "nik696@uandex.ru";
+  const { push } = useHistory();
+  const { setIsLoggedIn, updateUser, userInfo, getUser } = useUserContext();
+  const { onLogoutMoviesHandler } = useMoviesContext();
+
+  const email = useInput({ initialVal: userInfo.email, rules: EMAIL_RULES });
+  const name = useInput({ initialVal: userInfo.name, rules: NAME_RULES });
+
   const [isFormEdit, setIsFormEdit] = useState(false);
-  const [profile, setProfile] = useState({ name, mail });
+
+  const isFormValid = email.isInputValid && name.isInputValid;
+  const isUserDataSame =
+    userInfo.name === name.val && userInfo.email === email.val;
+
+  const isSubmitBtnDisabled = !isFormValid || isUserDataSame;
+
+  const sbmtButtonStyles = [
+    s.profile__btn,
+    isSubmitBtnDisabled && s.profile__btn_disable,
+  ];
+
+  const onLogout = () => {
+    localStorage.clear();
+    setIsLoggedIn(false);
+    onLogoutMoviesHandler();
+    push(ROUTES.MAIN);
+  };
+  const onSubmit = async (e) => {
+    await updateUser(e);
+    setIsFormEdit(false);
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    email.setInitialValue(userInfo.email);
+    name.setInitialValue(userInfo.name);
+  }, [userInfo]);
 
   return (
     <section className={s.profile}>
-      <form className={s.profile__form}>
-        <h2 className={s.profile__title}>Привет, Виталий</h2>
+      <form className={s.profile__form} onSubmit={onSubmit}>
+        <h2 className={s.profile__title}>{`Привет, ${userInfo.name}`}</h2>
         <div className={s.profile__formFields}>
           <div className={s.profile__formField}>
             <p className={s.profile__fieldText}>Имя</p>
             <input
               className={s.profile__input}
               type="text"
-              value={name}
+              value={name.val}
+              onChange={name.onChange}
               name="name"
               disabled={!isFormEdit}
             />
@@ -28,7 +68,9 @@ const Profile = () => {
             <input
               className={s.profile__input}
               type="text"
-              value={mail}
+              value={email.val}
+              onChange={email.onChange}
+              name="email"
               disabled={!isFormEdit}
             />
           </div>
@@ -36,12 +78,8 @@ const Profile = () => {
         <div className={s.profile__bottom}>
           {isFormEdit ? (
             <button
-              type="submit"
-              className={s.profile__btn}
-              onClick={(e) => {
-                e.preventDefault();
-                console.log("submit");
-              }}
+              disabled={isSubmitBtnDisabled}
+              className={getClassname(sbmtButtonStyles)}
             >
               Сохранить
             </button>
@@ -49,17 +87,20 @@ const Profile = () => {
             <button
               type="button"
               className={s.profile__btn}
-              onClick={(e) => {
-                e.preventDefault();
+              onClick={() => {
                 setIsFormEdit(true);
               }}
             >
               Редактировать
             </button>
           )}
-          <Link to="/" className={s.profile__logout}>
+          <button
+            type="button"
+            onClick={onLogout}
+            className={s.profile__logout}
+          >
             Выйти из аккаунта
-          </Link>
+          </button>
         </div>
       </form>
     </section>

@@ -1,19 +1,19 @@
 .checkbox {
-  position: relative;
+  position: relative;
   width: 36px;
   height: 20px;
 
   &__input {
-    position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     opacity: 0;
-  }
+  }
 
-  &__label {
-    cursor: pointer;
+  &__label {
+    cursor: pointer;
     position: absolute;
     top: 0;
     left: 0;
@@ -23,7 +23,7 @@
     border-radius: 16px;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 50%;
       right: 5%;
@@ -33,10 +33,10 @@
       border-radius: 50%;
       background: #2be080;
       transition: all 0.2s linear;
-    }
+    }
 
-    &_checked::before {
-      right: 50%;
-    }
-  }
-}
+    &_checked::before {
+      right: 50%;
+    }
+  }
+}

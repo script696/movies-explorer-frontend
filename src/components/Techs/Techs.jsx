@@ -1,5 +1,5 @@
-import s from "./Techs.module.scss";
 import { SectionTitle } from "../index";
+import s from "./Techs.module.scss";
 
 const Techs = () => {
   const techs = ["HTML", "CSS", "JS", "React", "Git", "Express.js", "mongoDB"];
